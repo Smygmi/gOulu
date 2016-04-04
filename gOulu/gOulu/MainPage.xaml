@@ -8,6 +8,137 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Background="Red" Width="Auto" Height="Auto">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" >
+                <Frame Name="MainFrame">
 
+            <StackPanel Margin="20" Width="320" Height="600">
+                <StackPanel Height="70">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Height="50"/>
+                                <TextBlock Text="GOulu" Grid.Row="0" Grid.Column="1" Height="50" FontSize="30"/>
+                            </Grid>
+
+                        </StackPanel>
+
+                
+                
+                
+                
+                        <!-- Category menu -->
+                        <StackPanel Height="70 " Padding="10">
+                            <ScrollViewer HorizontalScrollMode="Enabled" VerticalScrollMode="Disabled" Width="900">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                         <!-- Give buttons a common class, localize text-->
+                                        <Button Content="Musiikki"      Grid.Row="0" Grid.Column="0" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Teatteri"      Grid.Row="0" Grid.Column="1" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Urheilu"       Grid.Row="0" Grid.Column="2" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Hengelliset"   Grid.Row="0" Grid.Column="3" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Poliittiset"   Grid.Row="0" Grid.Column="4" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Yöelämä"       Grid.Row="0" Grid.Column="5" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Koulutus"      Grid.Row="0" Grid.Column="6" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Harrastajat"   Grid.Row="0" Grid.Column="7" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Messut"        Grid.Row="0" Grid.Column="8" Width="90" HorizontalAlignment="Center"/>
+                                        <Button Content="Muut"          Grid.Row="0" Grid.Column="9" Width="90" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </StackPanel>
+
+                <!-- Content view -->
+                <StackPanel Height="460">
+                    <Grid Height="760" Padding="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="160"/>
+                            <RowDefinition Height="160"/>
+                            <RowDefinition Height="160"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                                <!-- An example of an ad size of one grid column-->
+                                <RelativePanel Background="White" Margin="10" Grid.Column="0">
+                                    <StackPanel Height="140" Padding="10" Width="140" VerticalAlignment="Center">
+                                        <TextBlock Text="Lauluilta" TextWrapping="Wrap" TextAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                                        <TextBlock Text="4.4.2016 klo 18.00" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="JOKIVARRENPOLKU 5, 90650 OULU" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="Vapaa Pääsy" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                    </StackPanel>
+                                </RelativePanel>
+                        
+                                <!-- An example of an ad size of one grid column-->
+                                <RelativePanel Background="White" Margin="10" Grid.Column="1">
+                                    <StackPanel Height="140" Padding="10" Width="140" VerticalAlignment="Center">
+                                        <TextBlock Text="Susanna Puhakka 'Kuvien kuiskaus'" TextWrapping="Wrap" TextAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                                        <TextBlock Text="4.4.2016-30.4.2016" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="ALEKSANTERINKATU 16, 90100 OULU" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="Vapaa Pääsy" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                    </StackPanel>
+                                </RelativePanel>
+                        
+                                <!-- An example of an premium ad size of two grid columns-->
+                                <RelativePanel Background="White" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                    <StackPanel Height="140" Padding="10" Width="300" VerticalAlignment="Center">
+                                        <TextBlock Text="Höyhtyän Välke" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold"/>
+                                        <TextBlock Text="4.4.2016-16.6.2016 klo 8:00" TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
+                                        <TextBlock Text="LATOKARTANONTIE 1, 90150 OULU" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="Vapaa Pääsy" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                                        <TextBlock Text="" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                    </StackPanel>
+                                </RelativePanel>
+
+                                <!-- An example of an ad size of one grid column-->
+                                <RelativePanel Background="White" Margin="10" Grid.Row="2" Grid.Column="0">
+                                    <StackPanel Height="140" Padding="10" Width="140" VerticalAlignment="Center">
+                                        <TextBlock Text="Lauluilta" TextWrapping="Wrap" TextAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                                        <TextBlock Text="4.4.2016 klo 18.00" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="JOKIVARRENPOLKU 5, 90650 OULU" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="Vapaa Pääsy" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                    </StackPanel>
+                                </RelativePanel>
+
+                                <!-- An example of an ad size of one grid column-->
+                                <RelativePanel Background="White" Margin="10" Grid.Row="2" Grid.Column="1">
+                                    <StackPanel Height="140" Padding="10" Width="140" VerticalAlignment="Center">
+                                        <TextBlock Text="Susanna Puhakka 'Kuvien kuiskaus'" TextWrapping="Wrap" TextAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                                        <TextBlock Text="4.4.2016-30.4.2016" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="ALEKSANTERINKATU 16, 90100 OULU" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="Vapaa Pääsy" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                        <TextBlock Text="" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"/>
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Frame>
+                
+        </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Page>

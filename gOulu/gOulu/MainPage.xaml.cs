@@ -26,5 +26,12 @@ namespace gOulu
         {
             this.InitializeComponent();
         }
+
+        void openInBrowser()
+        {
+            //Add browser redirection code here
+        }
+
+
     }
 }
