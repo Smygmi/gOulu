@@ -12,26 +12,44 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using Windows.UI.Text;
 
 namespace gOulu
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        public string category;
+
+        public static StackPanel content;
+        
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            content = this.ContentPanel;
+            //ContentFrame.Navigate(typeof(ContentPage), "");
         }
 
-        void openInBrowser()
+        void OpenInBrowser()
         {
             //Add browser redirection code here
         }
 
+        private void button_categoryMusic_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(ContentPage), "musiikki");
+            
+        }
 
+        private void button_categoryTheater_Click(object sender, RoutedEventArgs e)
+        {
+            //Tähän gettipyyntö
+
+            //Set event info
+            ContentFrame.Navigate(typeof(ContentPage), "teatteri");
+            
+        }
     }
 }
