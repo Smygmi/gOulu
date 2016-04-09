@@ -155,6 +155,7 @@ namespace gOulu
 
         void GenerateGridData()
         {
+            //Get datapairs from events[] at line break
             int index = -1;
             delimiterChar = '\n';
             events = eventDataAsString.Split(delimiterChar);
@@ -181,10 +182,12 @@ namespace gOulu
 
             foreach (string pair in dataPairs)
             {
+                //Get datapairs from events[] at tab separator
                 delimiterChar = '\t';
                 string[] pairString = new string[2];
                 pairString = pair.Split(delimiterChar);
 
+                //Roll values to variables
                 foreach (string value in pairString)
                 {
                     switch (pairString[0])
@@ -288,13 +291,12 @@ namespace gOulu
             EventInnerPanels[index] = new StackPanel();
             EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
             EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
-            //EventInnerPanels[index].Background = white;
-           // EventInnerPanels[index].Height = 10;
             EventInnerPanels[index].Opacity = 1;
 
 
             EventOuterPanels[index].Children.Add(bg);
             EventOuterPanels[index].Children.Add(EventInnerPanels[index]);
+
             //Text elements
             GridTexts[0] = eventObjects[index].GridEventName;
             GridTexts[1] = eventObjects[index].GridEventDateTime;
@@ -307,21 +309,6 @@ namespace gOulu
             // Loop properties for text elements
             for (int i = 0; i < GridTexts.Length; i++)
             {
-                /* 
-
-                 if (i == 0)
-                 {
-                     border.Background = white;
-                     border.Opacity = .8;
-                     border.Margin = new Thickness(2);
-                 }
-                 else
-                 {
-                     border.Background = white;
-                     border.Opacity = .7;
-
-                 }*/
-                
 
                 GridTexts[i].TextWrapping = TextWrapping.Wrap;
                 GridTexts[i].TextAlignment = TextAlignment.Center;
@@ -329,7 +316,6 @@ namespace gOulu
                 GridTexts[i].HorizontalAlignment = HorizontalAlignment.Center;
                 GridTexts[i].FontSize = 13.0;
                 GridTexts[i].Foreground = black;
-                //border.Children.Add(GridTexts[i]);
 
                 
                 if (i == 0) GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
@@ -347,12 +333,7 @@ namespace gOulu
                 }
 
                 
-                /*if (i > 2)
-                {
-                    border.Children.Add(GridTexts[i]);
-                    EventInnerPanels[index].Children.Add(border);
-                }
-                else*/ EventInnerPanels[index].Children.Add(GridTexts[i]);
+                EventInnerPanels[index].Children.Add(GridTexts[i]);
                 
             }
 
@@ -376,7 +357,7 @@ namespace gOulu
                 
             }
 
-            //Setting columnspan for 2x1 ad size
+            //Setting properties for 2x1 ad size
             else if (eventObjects[index].adType == 1)
             {
                 EventOuterPanels[index].Padding = new Thickness(5);
@@ -391,7 +372,7 @@ namespace gOulu
                 Grid.SetColumnSpan(bg, 2);
                 bg.Stretch = Stretch.UniformToFill;
             }
-
+            //Setting properties for 2x2 ad size
             else if (eventObjects[index].adType == 2)
             {
                 EventOuterPanels[index].Padding = new Thickness(10);
