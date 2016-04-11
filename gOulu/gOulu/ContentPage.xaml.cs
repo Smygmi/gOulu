@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.System;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace gOulu
 {
@@ -33,7 +34,7 @@ namespace gOulu
         public string city;
         public string startDateTime;
         public string endDateTime;
-        public float price;
+        public double price;
         public string notes;
         public string ageLimit;
         public string websiteURL;
@@ -184,17 +185,12 @@ namespace gOulu
 
             for (int i = 0; i < eventDataStrings.Count; i++)
             {
-
-                if (eventDataStrings[i] == "Rating")
+                    i++;
+                    filteredList.Add("" + eventDataStrings[i]);
+                    
+                if (eventDataStrings[i - 1] == "Rating")
                 {
-                    i++;
-                    filteredList.Add("" + eventDataStrings[i]);
                     filteredList.Add("EndOfObject");
-
-                }
-                else {
-                    i++;
-                    filteredList.Add("" + eventDataStrings[i]);
                 }
                 
              }
@@ -211,25 +207,26 @@ namespace gOulu
                 { 
                     if (filteredList[i] == "EndOfObject")
                     {
-                            eventObjects[index] = new Event() {
-                            name = filteredList[i - 14],
-                            location = filteredList[i - 13],
-                            streetAddress = filteredList[i - 12],
-                            postalCode = filteredList[i - 11],
-                            city = filteredList[i - 10],
-                            startDateTime = filteredList[i - 9],
-                            endDateTime = filteredList[i - 8],
-                            //price = float.Parse(filteredList[i - 5]),
-                            price = 0,
-                            notes = filteredList[i - 6],
-                            ageLimit = filteredList[i - 5],
-                            websiteURL = filteredList[i - 4],
-                            pictureURL = filteredList[i - 3],
-                            entryAdded = filteredList[i - 2],
-                            adType = int.Parse(filteredList[i - 1] )};
-                    
-                            GenerateGridEntry(index);
-                            index++;
+                    eventObjects[index] = new Event()
+                        {
+                        name = filteredList[i - 14],
+                        location = filteredList[i - 13],
+                        streetAddress = filteredList[i - 12],
+                        postalCode = filteredList[i - 11],
+                        city = filteredList[i - 10],
+                        startDateTime = filteredList[i - 9],
+                        endDateTime = filteredList[i - 8],
+
+                        notes = filteredList[i - 6],
+                        ageLimit = filteredList[i - 5],
+                        websiteURL = filteredList[i - 4],
+                        pictureURL = filteredList[i - 3],
+                        entryAdded = filteredList[i - 2],
+                        adType = int.Parse(filteredList[i - 1])
+                        };
+                    double.TryParse(filteredList[i - 7], out eventObjects[index].price);
+                    GenerateGridEntry(index);
+                    index++;
                     }
                     
                 }
@@ -252,7 +249,7 @@ namespace gOulu
             eventObjects[index].GridEventLocation.Text = eventObjects[index].location + eventObjects[index].streetAddress + eventObjects[index].postalCode + eventObjects[index].city;
 
             //Print price. If price is null, free entry
-            if (eventObjects[index].price != 0) eventObjects[index].GridEventPrice.Text = eventObjects[index].price.ToString() + "€";
+            if (eventObjects[index].price != 0.0) eventObjects[index].GridEventPrice.Text = eventObjects[index].price.ToString() + "€";
             else eventObjects[index].GridEventPrice.Text = "Vapaa pääsy";
 
             //If no age limit, don't print
