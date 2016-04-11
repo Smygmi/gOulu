@@ -52,9 +52,9 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Give buttons a common class, localize text-->
-                                <Button x:Name="button_categoryMusic" Content="Musiikki"    Background="#FFF"  Grid.Row="0" Grid.Column="0" Width="90" HorizontalAlignment="Center" Click="button_categoryMusic_Click"/>
+                                <Button x:Name="button_categoryMusic" Content="Musiikki"    Background="#FFF"  Grid.Row="0" Grid.Column="0" Width="90" HorizontalAlignment="Center" Click="button_categoryMusic_Click" Tapped="button_categoryMusic_Click"/>
                                 <Button Content="Teatteri"      Background="#FFF" Grid.Row="0" Grid.Column="1" Width="90" HorizontalAlignment="Center" Click="button_categoryTheater_Click"/>
-                                <Button Content="Urheilu"       Grid.Row="0" Grid.Column="2" Width="90" HorizontalAlignment="Center"/>
+                                <Button Content="Urheilu"       Grid.Row="0" Grid.Column="2" Width="90" HorizontalAlignment="Center" Click="button_categorySport_Click"/>
                                 <Button Content="Hengelliset"   Grid.Row="0" Grid.Column="3" Width="90" HorizontalAlignment="Center"/>
                                 <Button Content="Poliittiset"   Grid.Row="0" Grid.Column="4" Width="90" HorizontalAlignment="Center"/>
                                 <Button Content="Yöelämä"       Grid.Row="0" Grid.Column="5" Width="90" HorizontalAlignment="Center"/>

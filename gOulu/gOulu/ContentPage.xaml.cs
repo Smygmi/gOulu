@@ -17,8 +17,9 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Text;
 using Windows.Web.Http;
 using Windows.UI.Xaml.Media.Imaging;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+using Windows.System;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace gOulu
 {
@@ -32,9 +33,9 @@ namespace gOulu
         public string city;
         public string startDateTime;
         public string endDateTime;
-        public int price;
+        public float price;
         public string notes;
-        public int ageLimit;
+        public string ageLimit;
         public string websiteURL;
         public string pictureURL;
         public string entryAdded;
@@ -56,6 +57,13 @@ namespace gOulu
         public string category;
         Uri musiikki = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_musiikki.php");
         Uri teatteri = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_teatteri.php");
+        Uri urheilu = new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getUrheiluTable.php");
+        Uri hengelliset = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_hengelliset.php");
+        Uri poliittiset = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_poliittiset.php");
+        Uri yoelama = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_yoelama.php");
+        Uri koulutus = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_koulutus.php");
+        Uri harrastajat = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_harrastajat.php");
+        Uri messut = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_messut.php");
 
         //Change these colors to theme later
         SolidColorBrush white = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 255, G = 255, B = 255 });
@@ -77,11 +85,8 @@ namespace gOulu
 
         //For event parsing
         string eventDataAsString;
-        char delimiterChar;
-        string[] events;
         Event[] eventObjects;
-        string[] dataPairs;
-
+        char delimiterChar;
         
 
 
@@ -104,13 +109,11 @@ namespace gOulu
             EventGrid.ColumnDefinitions.Add(Cols[0]);
             EventGrid.ColumnDefinitions.Add(Cols[1]);
 
-            dataPairs = new String[7];
-
             Content.Background = transparent;
             Content.Children.Add(EventGrid);
         }
 
-
+        //Connects to database server
         async void DatabaseConnect(string category)
         {
             LoadingIndicator.IsActive = true;
@@ -119,10 +122,9 @@ namespace gOulu
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage httpResponse = new HttpResponseMessage();
 
-            //Designate requestUri by categoryy
             //API URI = http://www.students.oamk.fi/~t4hevi00/mobileWinApi/
 
-            Uri requestUri = new Uri("http://www.students.oamk.fi/~t4toan00/");
+            Uri requestUri = new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getUrheiluTable.php");
 
             switch (category)
             { case "musiikki":
@@ -130,6 +132,9 @@ namespace gOulu
                     break;
                 case "teatteri":
                     requestUri = teatteri;
+                    break;
+                case "urheilu":
+                    requestUri = urheilu;
                     break;
             }
                 
@@ -152,102 +157,92 @@ namespace gOulu
             }
         }
 
-
+        //Fetches events from received string
         void GenerateGridData()
         {
-            //Get datapairs from events[] at line break
-            int index = -1;
-            delimiterChar = '\n';
-            events = eventDataAsString.Split(delimiterChar);
-            eventObjects = new Event[events.Length];
-            EventInnerPanels = new StackPanel[eventObjects.Length];
-            EventOuterPanels = new RelativePanel[eventObjects.Length];
-            Rows = new RowDefinition[eventObjects.Length + 100];
+            int index = 0;
+            JsonTextReader reader = new JsonTextReader(new StringReader(eventDataAsString));
 
-            foreach (string e in events)
-            {
-                index++;
-                eventObjects[index] = new Event() { };
-                SetValues(index, e);
-                GenerateGridEntry(index);
-            }
-        }
+            //Read value fields from Json
+            List<string> eventDataStrings = new List<string>();
 
-
-        void SetValues(int index, string e)
-        {
-            //Get datapairs from events[] at | separator
-            delimiterChar = '|';
-            dataPairs = e.Split(delimiterChar);
-
-            foreach (string pair in dataPairs)
-            {
-                //Get datapairs from events[] at tab separator
-                delimiterChar = '\t';
-                string[] pairString = new string[2];
-                pairString = pair.Split(delimiterChar);
-
-                //Roll values to variables
-                foreach (string value in pairString)
-                {
-                    switch (pairString[0])
-                    {
-                        case "Name":
-                            eventObjects[index].name = pairString[1];
-                            break;
-                        case "Place_Name":
-                            eventObjects[index].location = pairString[1];
-                            break;
-                        case "Street_Address":
-                            eventObjects[index].location = pairString[1];
-                            break;
-                        case "Postal_Code":
-                            eventObjects[index].location = pairString[1];
-                            break;
-                        case "City":
-                            eventObjects[index].location = pairString[1];
-                            break;
-                        case "Start_Date_Time":
-                            eventObjects[index].startDateTime = pairString[1];
-                            break;
-                        case "End_Date_Time":
-                            eventObjects[index].endDateTime = pairString[1];
-                            break;
-                        case "Price":
-                            eventObjects[index].price = int.Parse(pairString[1]);
-                            break;
-                        case "Notes":
-                            eventObjects[index].notes = pairString[1];
-                            break;
-                        case "Age_Rating":
-                            eventObjects[index].ageLimit = int.Parse(pairString[1]);
-                            break;
-                        case "Website_Url":
-                            eventObjects[index].websiteURL = pairString[1];
-                            break;
-                        case "Picture_Url":
-                            eventObjects[index].pictureURL = pairString[1];
-                            break;
-                        case "Entry_Added":
-                            eventObjects[index].entryAdded = pairString[1];
-                            break;
-                        case "Rating":
-                            eventObjects[index].adType = int.Parse(pairString[1]);
-
-                            break;
-                    }
+            while (reader.Read()) {
+                if (reader.Value != null)
+                    eventDataStrings.Add(reader.Value.ToString());
+                
+                else if (reader.TokenType == JsonToken.StartObject){
+                    index++;
                 }
             }
 
+            //Create event object arrays
+            eventObjects = new Event[index];
 
+
+            //Filter values from value keys        
+            List<string> filteredList = new List<string>();
+
+            for (int i = 0; i < eventDataStrings.Count; i++)
+            {
+
+                if (eventDataStrings[i] == "Rating")
+                {
+                    i++;
+                    filteredList.Add("" + eventDataStrings[i]);
+                    filteredList.Add("EndOfObject");
+
+                }
+                else {
+                    i++;
+                    filteredList.Add("" + eventDataStrings[i]);
+                }
+                
+             }
+
+            index = 0;
+
+            //Create enough panels for events
+            EventInnerPanels = new StackPanel[eventObjects.Length];
+            EventOuterPanels = new RelativePanel[eventObjects.Length];
+            Rows = new RowDefinition[eventObjects.Length + 100];
+            
+
+                for (int i = 0; i < filteredList.Count; i++)
+                { 
+                    if (filteredList[i] == "EndOfObject")
+                    {
+                            eventObjects[index] = new Event() {
+                            name = filteredList[i - 14],
+                            location = filteredList[i - 13],
+                            streetAddress = filteredList[i - 12],
+                            postalCode = filteredList[i - 11],
+                            city = filteredList[i - 10],
+                            startDateTime = filteredList[i - 9],
+                            endDateTime = filteredList[i - 8],
+                            //price = float.Parse(filteredList[i - 5]),
+                            price = 0,
+                            notes = filteredList[i - 6],
+                            ageLimit = filteredList[i - 5],
+                            websiteURL = filteredList[i - 4],
+                            pictureURL = filteredList[i - 3],
+                            entryAdded = filteredList[i - 2],
+                            adType = int.Parse(filteredList[i - 1] )};
+                    
+                            GenerateGridEntry(index);
+                            index++;
+                    }
+                    
+                }
         }
 
+
+        //Generates Grid Block for the current event
         void GenerateGridEntry(int index)
         {
-
             //Print event name
             eventObjects[index].GridEventName.Text = eventObjects[index].name;
 
+            Debug.WriteLine(eventObjects[index].GridEventName.Text);
 
             //If end datetime is null print only starting time
             if (eventObjects[index].endDateTime == "") eventObjects[index].GridEventDateTime.Text = eventObjects[index].startDateTime;
@@ -261,7 +256,7 @@ namespace gOulu
             else eventObjects[index].GridEventPrice.Text = "Vapaa pääsy";
 
             //If no age limit, don't print
-            if (eventObjects[index].ageLimit != 0) eventObjects[index].GridEventAgeLimit.Text = "K" + eventObjects[index].ageLimit.ToString();
+            if (eventObjects[index].ageLimit != "") eventObjects[index].GridEventAgeLimit.Text = "K" + eventObjects[index].ageLimit.ToString();
             else eventObjects[index].GridEventAgeLimit.Text = "";
 
             //Generate new elements
@@ -317,6 +312,7 @@ namespace gOulu
                 GridTexts[i].FontSize = 13.0;
                 GridTexts[i].Foreground = black;
 
+                Debug.WriteLine(GridTexts[i].Text);
                 
                 if (i == 0) GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
                 if (eventObjects[index].adType == 1)
@@ -354,7 +350,10 @@ namespace gOulu
 
                 Rows[rowIndex].Height = new GridLength(170);
                 bg.Stretch = Stretch.Fill;
-                
+
+                //rowIndex++;
+
+
             }
 
             //Setting properties for 2x1 ad size
@@ -383,25 +382,33 @@ namespace gOulu
                 EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
                 Grid.SetColumn(EventOuterPanels[index], 0);
                 Grid.SetColumnSpan(EventOuterPanels[index], 2);
-                Rows[rowIndex].Height = new GridLength(300);
+                //Grid.SetRowSpan(EventOuterPanels[index], 2);
+                Rows[rowIndex].Height = new GridLength(260);
                 colIndex = 1;
                 bg.Stretch = Stretch.Fill;
-                rowIndex++;
+                //rowIndex++;
             }
-
-            
 
             //Increase rows after second column
             if (colIndex == 1) rowIndex++;
 
+            
             //Variate between columns 0/1
             if (colIndex == 0) colIndex = 1;
             else if (colIndex == 1) colIndex = 0;
 
 
+            EventOuterPanels[index].Tapped += (sender, e) => eventTapped(sender, e, index);
+
+        }
+
+        private void eventTapped(object sender, RoutedEventArgs e, int index)
+        {
+            //LaunchUriAsync(new Uri(eventObjects[index].websiteURL));
         }
 
 
+        //Designates database table category with receiving parameter
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             category = e.Parameter as string;

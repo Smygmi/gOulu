@@ -51,5 +51,14 @@ namespace gOulu
             ContentFrame.Navigate(typeof(ContentPage), "teatteri");
             
         }
+
+        private void button_categorySport_Click(object sender, RoutedEventArgs e)
+        {
+            //Tähän gettipyyntö
+
+            //Set event info
+            ContentFrame.Navigate(typeof(ContentPage), "urheilu");
+
+        }
     }
 }
