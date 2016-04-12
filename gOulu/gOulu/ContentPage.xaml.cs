@@ -56,15 +56,17 @@ namespace gOulu
     {
         //Category
         public string category;
-        Uri musiikki = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_musiikki.php");
-        Uri teatteri = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_teatteri.php");
-        Uri urheilu = new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getUrheiluTable.php");
-        Uri hengelliset = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_hengelliset.php");
-        Uri poliittiset = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_poliittiset.php");
-        Uri yoelama = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_yoelama.php");
-        Uri koulutus = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_koulutus.php");
-        Uri harrastajat = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_harrastajat.php");
-        Uri messut = new Uri("http://www.students.oamk.fi/~t4toan00/feikki_messut.php");
+        Uri featured =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getFeaturedTable.php");
+        Uri musiikki =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMusiikkiTable.php");
+        Uri teatteri =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getTeatteriTable.php");
+        Uri urheilu =       new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getUrheiluTable.php");
+        Uri hengelliset =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getHengellisetTable.php");
+        Uri poliittiset =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getPoliittisetTable.php");
+        Uri yoelama =       new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getYoelamaTable.php");
+        Uri koulutus =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getKoulutusTable.php");
+        Uri harrastajat =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getHarrastusTable.php");
+        Uri messut =        new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMessutTable.php");
+        Uri muut =          new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMuuTable.php");
 
         //Change these colors to theme later
         SolidColorBrush white = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 255, G = 255, B = 255 });
@@ -96,7 +98,7 @@ namespace gOulu
             this.InitializeComponent();
 
             //Event grid dimensions
-            EventGrid.Height = 760;
+            
             Content.Width = 450;
             EventGrid.Width = 450;
 
@@ -125,10 +127,14 @@ namespace gOulu
 
             //API URI = http://www.students.oamk.fi/~t4hevi00/mobileWinApi/
 
-            Uri requestUri = new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getUrheiluTable.php");
+            Uri requestUri = featured;
 
             switch (category)
-            { case "musiikki":
+            {
+                case "featured":
+                    requestUri = featured;
+                    break;
+                case "musiikki":
                     requestUri = musiikki;
                     break;
                 case "teatteri":
@@ -136,6 +142,27 @@ namespace gOulu
                     break;
                 case "urheilu":
                     requestUri = urheilu;
+                    break;
+                case "hengelliset":
+                    requestUri = hengelliset;
+                    break;
+                case "poliittiset":
+                    requestUri = poliittiset;
+                    break;
+                case "yoelama":
+                    requestUri = yoelama;
+                    break;
+                case "koulutus":
+                    requestUri = koulutus;
+                    break;
+                case "harrastajat":
+                    requestUri = harrastajat;
+                    break;
+                case "messut":
+                    requestUri = messut;
+                    break;
+                case "muut":
+                    requestUri = muut;
                     break;
             }
                 
@@ -193,7 +220,7 @@ namespace gOulu
                     char[] delimiterChars = { '-', ':', ' ' };
                     string[] dateTimeString = eventDataStrings[i].Split(delimiterChars);
 
-                    string formattedDateTime = dateTimeString[2] + "." + dateTimeString[1] + "." + dateTimeString[0] + " " + dateTimeString[4] + ":" + dateTimeString[5];
+                    string formattedDateTime = dateTimeString[2] + "." + dateTimeString[1] + "." + dateTimeString[0] + " " + dateTimeString[3] + ":" + dateTimeString[4];
                     filteredList.Add(formattedDateTime);
 
                     Debug.WriteLine(filteredList.Last());
@@ -295,7 +322,7 @@ namespace gOulu
             //Inner panel
             EventInnerPanels[index] = new StackPanel();
             EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
-            EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
+            //EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
             EventInnerPanels[index].Opacity = 1;
 
 
@@ -353,13 +380,13 @@ namespace gOulu
               
                 EventInnerPanels[index].Width = 140;
                 EventInnerPanels[index].Height = 140;
-               
                 EventInnerPanels[index].Padding = new Thickness(10);
 
                 Rows[rowIndex].Height = new GridLength(170);
                 bg.Stretch = Stretch.Fill;
 
-                //rowIndex++;
+                //Content.Height = Content.Height + 170;
+                EventGrid.Height = EventGrid.Height + 200;
 
 
             }
@@ -378,7 +405,11 @@ namespace gOulu
                 colIndex = 1;
                 Grid.SetColumnSpan(bg, 2);
                 bg.Stretch = Stretch.UniformToFill;
+                //Content.Height = Content.Height + 170;
+                EventGrid.Height = EventGrid.Height + 170;
+                //rowIndex++;
             }
+            
             //Setting properties for 2x2 ad size
             else if (eventObjects[index].adType == 2)
             {
@@ -391,11 +422,33 @@ namespace gOulu
                 Grid.SetColumn(EventOuterPanels[index], 0);
                 Grid.SetColumnSpan(EventOuterPanels[index], 2);
                 //Grid.SetRowSpan(EventOuterPanels[index], 2);
+                Rows[rowIndex].Height = new GridLength(300);
+                colIndex = 1;
+                bg.Stretch = Stretch.Fill;
+                //Content.Height = Content.Height + 350;
+                EventGrid.Height = EventGrid.Height + 350;
+
+            }
+            else if (eventObjects[index].adType == 3)
+            {
+                EventOuterPanels[index].Padding = new Thickness(10);
+                EventInnerPanels[index].Width = 300;
+                EventInnerPanels[index].Height = 500;
+                EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
+                EventInnerPanels[index].Padding = new Thickness(10, 50, 0, 0);
+                EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
+                Grid.SetColumn(EventOuterPanels[index], 0);
+                Grid.SetColumnSpan(EventOuterPanels[index], 3);
+                //Grid.SetRowSpan(EventOuterPanels[index], 2);
                 Rows[rowIndex].Height = new GridLength(260);
                 colIndex = 1;
                 bg.Stretch = Stretch.Fill;
+                Content.Height = Content.Height + 450;
+
                 //rowIndex++;
             }
+
+            Debug.WriteLine("event: " + index + "row:" + rowIndex);
 
             //Increase rows after second column
             if (colIndex == 1) rowIndex++;
@@ -405,6 +458,7 @@ namespace gOulu
             if (colIndex == 0) colIndex = 1;
             else if (colIndex == 1) colIndex = 0;
 
+            MainPage.content.Height = 900;
 
             EventOuterPanels[index].Tapped += (sender, e) => eventTapped(sender, e, index);
 
