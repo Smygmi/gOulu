@@ -185,12 +185,27 @@ namespace gOulu
 
             for (int i = 0; i < eventDataStrings.Count; i++)
             {
-                    i++;
-                    filteredList.Add("" + eventDataStrings[i]);
-                    
-                if (eventDataStrings[i - 1] == "Rating")
+                i++;
+
+                if (eventDataStrings[i - 1] == "Start_Date_Time" || eventDataStrings[i - 1] == "End_Date_Time")
                 {
+
+                    char[] delimiterChars = { '-', ':', ' ' };
+                    string[] dateTimeString = eventDataStrings[i].Split(delimiterChars);
+
+                    string formattedDateTime = dateTimeString[2] + "." + dateTimeString[1] + "." + dateTimeString[0] + " " + dateTimeString[4] + ":" + dateTimeString[5];
+                    filteredList.Add(formattedDateTime);
+
+                    Debug.WriteLine(filteredList.Last());
+                }
+               else if (eventDataStrings[i - 1] == "Rating")
+                {
+                    filteredList.Add("" + eventDataStrings[i]);
                     filteredList.Add("EndOfObject");
+                }
+                else
+                {
+                    filteredList.Add("" + eventDataStrings[i]);
                 }
                 
              }
@@ -239,14 +254,12 @@ namespace gOulu
             //Print event name
             eventObjects[index].GridEventName.Text = eventObjects[index].name;
 
-            Debug.WriteLine(eventObjects[index].GridEventName.Text);
-
-            //If end datetime is null print only starting time
-            if (eventObjects[index].endDateTime == "") eventObjects[index].GridEventDateTime.Text = eventObjects[index].startDateTime;
+            //If end datetime is same as start print only starting time
+            if (eventObjects[index].startDateTime == eventObjects[index].endDateTime) eventObjects[index].GridEventDateTime.Text = eventObjects[index].startDateTime;
             else eventObjects[index].GridEventDateTime.Text = eventObjects[index].startDateTime + " - " + eventObjects[index].endDateTime;
 
             //Print event location
-            eventObjects[index].GridEventLocation.Text = eventObjects[index].location + eventObjects[index].streetAddress + eventObjects[index].postalCode + eventObjects[index].city;
+            eventObjects[index].GridEventLocation.Text = eventObjects[index].location + " " + eventObjects[index].streetAddress + " " + eventObjects[index].postalCode + " " + eventObjects[index].city;
 
             //Print price. If price is null, free entry
             if (eventObjects[index].price != 0.0) eventObjects[index].GridEventPrice.Text = eventObjects[index].price.ToString() + "€";
@@ -308,8 +321,6 @@ namespace gOulu
                 GridTexts[i].HorizontalAlignment = HorizontalAlignment.Center;
                 GridTexts[i].FontSize = 13.0;
                 GridTexts[i].Foreground = black;
-
-                Debug.WriteLine(GridTexts[i].Text);
                 
                 if (i == 0) GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
                 if (eventObjects[index].adType == 1)
@@ -341,9 +352,9 @@ namespace gOulu
                 Grid.SetColumn(EventOuterPanels[index], colIndex);
               
                 EventInnerPanels[index].Width = 140;
-                EventInnerPanels[index].Height = 170;
+                EventInnerPanels[index].Height = 140;
                
-                EventInnerPanels[index].Padding = new Thickness(20);
+                EventInnerPanels[index].Padding = new Thickness(10);
 
                 Rows[rowIndex].Height = new GridLength(170);
                 bg.Stretch = Stretch.Fill;
@@ -399,9 +410,9 @@ namespace gOulu
 
         }
 
-        private void eventTapped(object sender, RoutedEventArgs e, int index)
+        private async void eventTapped(object sender, RoutedEventArgs e, int index)
         {
-            //LaunchUriAsync(new Uri(eventObjects[index].websiteURL));
+            bool success = await Launcher.LaunchUriAsync(new Uri(eventObjects[index].websiteURL));
         }
 
 

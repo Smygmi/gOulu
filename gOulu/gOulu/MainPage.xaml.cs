@@ -18,9 +18,6 @@ namespace gOulu
 {
     public sealed partial class MainPage : Page
     {
-
-        public string category;
-
         public static StackPanel content;
         
 

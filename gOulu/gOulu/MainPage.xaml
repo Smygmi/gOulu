@@ -9,20 +9,19 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Background="#FFF" Width="Auto" Height="Auto">
+            <Frame x:Name="MainFrame" Height="643">
 
-            <Frame Name="MainFrame">
-
-                <StackPanel Margin="10" Width="350" Height="600">
-                    <StackPanel Height="70">
+                <StackPanel Margin="10,10,10,10">
+                    <StackPanel Height="50">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Row="0" Grid.Column="0" Height="50"/>
+                            <Image Grid.Row="0" Grid.Column="0" Height="50" Source="Assets/logoplaceholder.png"/>
                             <TextBlock Text="GOulu" Grid.Row="0" Grid.Column="1" Height="50" FontSize="30"/>
                         </Grid>
 
@@ -33,46 +32,43 @@
 
 
                     <!-- Category menu -->
-                    <StackPanel Height="70 " Padding="10">
-                        <ScrollViewer HorizontalScrollMode="Enabled" VerticalScrollMode="Disabled" Width="900" Margin="-50,0,-600,0">
+                    <StackPanel Height="50">
+                        <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled" Margin="-5,0,0,0">
                             <Grid Height="53">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="110"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- Give buttons a common class, localize text-->
-                                <Button x:Name="button_categoryMusic" Content="Musiikki"    Background="#FFF"  Grid.Row="0" Grid.Column="0" Width="90" HorizontalAlignment="Center" Click="button_categoryMusic_Click" Tapped="button_categoryMusic_Click"/>
-                                <Button Content="Teatteri"      Background="#FFF" Grid.Row="0" Grid.Column="1" Width="90" HorizontalAlignment="Center" Click="button_categoryTheater_Click"/>
-                                <Button Content="Urheilu"       Grid.Row="0" Grid.Column="2" Width="90" HorizontalAlignment="Center" Click="button_categorySport_Click"/>
-                                <Button Content="Hengelliset"   Grid.Row="0" Grid.Column="3" Width="90" HorizontalAlignment="Center"/>
-                                <Button Content="Poliittiset"   Grid.Row="0" Grid.Column="4" Width="90" HorizontalAlignment="Center"/>
-                                <Button Content="Yöelämä"       Grid.Row="0" Grid.Column="5" Width="90" HorizontalAlignment="Center"/>
-                                <Button Content="Koulutus"      Grid.Row="0" Grid.Column="6" Width="90" HorizontalAlignment="Center"/>
-                                <Button Content="Harrastajat"   Grid.Row="0" Grid.Column="7" Width="90" HorizontalAlignment="Center"/>
-                                <Button Content="Messut"        Grid.Row="0" Grid.Column="8" Width="90" HorizontalAlignment="Center"/>
-                                <Button Content="Muut"          Grid.Row="0" Grid.Column="9" Width="90" HorizontalAlignment="Center"/>
+                                <Button x:Name="button_Musiikki"    Content="Musiikki"      Background="#FFF"   Grid.Row="0" Grid.Column="0" Width="100" HorizontalAlignment="Center" Click="button_categoryMusic_Click" Tapped="button_categoryMusic_Click"/>
+                                <Button x:Name="button_Teatteri"    Content="Teatteri"      Background="#FFF"   Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Center" Click="button_categoryTheater_Click"/>
+                                <Button x:Name="button_Urheilu"     Content="Urheilu"       Background="#FFF"   Grid.Row="0" Grid.Column="2" Width="100" HorizontalAlignment="Center" Click="button_categorySport_Click"/>
+                                <Button x:Name="button_Hengelliset" Content="Hengelliset"   Background="#FFF"   Grid.Row="0" Grid.Column="3" Width="100" HorizontalAlignment="Center"/>
+                                <Button x:Name="button_Poliittiset" Content="Poliittiset"   Background="#FFF"   Grid.Row="0" Grid.Column="4" Width="100" HorizontalAlignment="Center"/>
+                                <Button x:Name="button_Yoelama"     Content="Yöelämä"       Background="#FFF"   Grid.Row="0" Grid.Column="5" Width="100" HorizontalAlignment="Center"/>
+                                <Button x:Name="button_Koulutus"    Content="Koulutus"      Background="#FFF"   Grid.Row="0" Grid.Column="6" Width="100" HorizontalAlignment="Center"/>
+                                <Button x:Name="button_Harrastajat" Content="Harrastajat"   Background="#FFF"   Grid.Row="0" Grid.Column="7" Width="100" HorizontalAlignment="Center"/>
+                                <Button x:Name="button_Messut"      Content="Messut"        Background="#FFF"   Grid.Row="0" Grid.Column="8" Width="100" HorizontalAlignment="Center"/>
+                                <Button x:Name="button_Muut"        Content="Muut"          Background="#FFF"   Grid.Row="0" Grid.Column="9" Width="100" HorizontalAlignment="Center"/>
                             </Grid>
                         </ScrollViewer>
                     </StackPanel>
 
-                    <!-- Content view -->
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                        <StackPanel Height="460" Name="ContentPanel">
-                            <Frame Name="ContentFrame" Width="323" Height="460">
-                                
-                            </Frame>
-                           
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" Height="524">
+                        <StackPanel Height="700" x:Name="ContentPanel">
+                            <Frame x:Name="ContentFrame" Width="323" Height="Auto"/>
+
                         </StackPanel>
 
                     </ScrollViewer>
