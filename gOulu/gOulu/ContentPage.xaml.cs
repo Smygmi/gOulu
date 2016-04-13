@@ -325,7 +325,7 @@ namespace gOulu
             //EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
             EventInnerPanels[index].Opacity = 1;
 
-
+           // EventInnerPanels[index].Background = red;
             EventOuterPanels[index].Children.Add(bg);
             EventOuterPanels[index].Children.Add(EventInnerPanels[index]);
 
