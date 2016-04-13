@@ -91,6 +91,7 @@ namespace gOulu
         Event[] eventObjects;
         char delimiterChar;
 
+        //blaa 
 
         Style eventbg = (Style)Application.Current.Resources["EventBgStyle"];
 
