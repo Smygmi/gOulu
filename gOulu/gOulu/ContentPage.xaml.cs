@@ -91,12 +91,19 @@ namespace gOulu
         Event[] eventObjects;
         char delimiterChar;
 
+        //blaa 
+
+        Style eventbg = (Style)Application.Current.Resources["EventBgStyle"];
+
         Style eventstyle = (Style)Application.Current.Resources["EventBaseTextStyle"];
+        Style event0style = (Style)Application.Current.Resources["Event0TextStyle"];
+        Style event1style = (Style)Application.Current.Resources["Event1TextStyle"];
         Style event2style = (Style)Application.Current.Resources["Event2TextStyle"];
 
         Style outerpanelstyle = (Style)Application.Current.Resources["EventOuterPanelStyle"];
         Style innerpanelstyle = (Style)Application.Current.Resources["EventInnerPanelStyle"];
 
+        
         public ContentPage()
         {
             this.InitializeComponent();
@@ -226,8 +233,6 @@ namespace gOulu
 
                     string formattedDateTime = dateTimeString[2] + "." + dateTimeString[1] + "." + dateTimeString[0] + " " + dateTimeString[3] + ":" + dateTimeString[4];
                     filteredList.Add(formattedDateTime);
-
-                    Debug.WriteLine(filteredList.Last());
                 }
                else if (eventDataStrings[i - 1] == "Rating")
                 {
@@ -282,6 +287,8 @@ namespace gOulu
         //Generates Grid Block for the current event
         void GenerateGridEntry(int index)
         {
+
+            
             //Print event name
             eventObjects[index].GridEventName.Text = eventObjects[index].name;
 
@@ -311,23 +318,27 @@ namespace gOulu
             if (eventObjects[index].pictureURL != "Default")
             {
                 bg.Source = new BitmapImage(new Uri(eventObjects[index].pictureURL, UriKind.Absolute));
-                bg.Opacity = .6;
-
+                //bg.Style = eventbg;
+                //bg.Opacity = .6;
             }
+
+
             else EventInnerPanels[index].Background = white;
+
+            Debug.WriteLine("success");
 
             //Outer panel
             EventOuterPanels[index] = new RelativePanel();
             EventOuterPanels[index].Style = outerpanelstyle;
-            EventOuterPanels[index].Opacity = 1;
-            EventOuterPanels[index].Margin = new Thickness(10);
+            //EventOuterPanels[index].Opacity = 1;
+            //EventOuterPanels[index].Margin = new Thickness(10);
             EventGrid.Children.Add(EventOuterPanels[index]);
 
             //Inner panel
             EventInnerPanels[index] = new StackPanel();
-            EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
+            //EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
             //EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
-            EventInnerPanels[index].Opacity = 1;
+           // EventInnerPanels[index].Opacity = 1;
 
             
             EventOuterPanels[index].Children.Add(bg);
@@ -340,34 +351,25 @@ namespace gOulu
             GridTexts[3] = eventObjects[index].GridEventPrice;
             GridTexts[4] = eventObjects[index].GridEventAgeLimit;
 
-
-            // Pyydä ATlta muotoilutiedostoa tekstien muotoiluun
             // Loop properties for text elements
             for (int i = 0; i < GridTexts.Length; i++)
             {
 
+                //Adds base style for all text
                 GridTexts[i].Style = eventstyle;
 
-               /* GridTexts[i].TextWrapping = TextWrapping.Wrap;
-                GridTexts[i].TextAlignment = TextAlignment.Center;
-                GridTexts[i].VerticalAlignment = VerticalAlignment.Center;
-                GridTexts[i].HorizontalAlignment = HorizontalAlignment.Center;
-                GridTexts[i].FontSize = 13.0;
-                GridTexts[i].Foreground = black;*/
-                
-                if (i == 0) GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
+                if (i == 0)
+                {
+                    GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
+                    //GridTexts[0].Style = event0style;
+                }
                 if (eventObjects[index].adType == 1)
                 {
-                    GridTexts[0].FontSize = 30;
-                    GridTexts[1].FontSize = 18;
-                    GridTexts[i].Foreground = black;
-                    
+                   // GridTexts[0].Style = event1style;                    
                 }
                 else if (eventObjects[index].adType == 2)
                 {
                     GridTexts[0].Style = event2style;
-                    //GridTexts[0].FontSize = 40;
-                    //GridTexts[1].FontSize = 24;
                 }
 
                 
@@ -382,17 +384,16 @@ namespace gOulu
             //Setting column index for 1x1 ad size
             if (eventObjects[index].adType == 0)
             {
-                EventOuterPanels[index].Padding = new Thickness(5);
+                //EventOuterPanels[index].Padding = new Thickness(5);
+                //EventInnerPanels[index].Padding = new Thickness(10);
+                //bg.Stretch = Stretch.Fill;
+
                 Grid.SetColumn(EventOuterPanels[index], colIndex);
-              
                 EventInnerPanels[index].Width = 140;
                 EventInnerPanels[index].Height = 140;
-                EventInnerPanels[index].Padding = new Thickness(10);
-
                 Rows[rowIndex].Height = new GridLength(170);
-                bg.Stretch = Stretch.Fill;
+                
 
-                //Content.Height = Content.Height + 170;
                 EventGrid.Height = EventGrid.Height + 200;
 
 
@@ -401,61 +402,46 @@ namespace gOulu
             //Setting properties for 2x1 ad size
             else if (eventObjects[index].adType == 1)
             {
-                EventOuterPanels[index].Padding = new Thickness(5);
+                //EventOuterPanels[index].Padding = new Thickness(5);
+                //EventInnerPanels[index].Padding = new Thickness(15);
+                //bg.Stretch = Stretch.UniformToFill;
 
                 EventInnerPanels[index].Width = 300;
                 EventInnerPanels[index].Height = 170;
-                EventInnerPanels[index].Padding = new Thickness(15);
+                
+                
                 Grid.SetColumn(EventOuterPanels[index], 0);
                 Grid.SetColumnSpan(EventOuterPanels[index], 2);
                 Rows[rowIndex].Height = new GridLength(170);
-                colIndex = 1;
+               
                 Grid.SetColumnSpan(bg, 2);
-                bg.Stretch = Stretch.UniformToFill;
-                //Content.Height = Content.Height + 170;
+                
+
+                colIndex = 1;
                 EventGrid.Height = EventGrid.Height + 170;
-                //rowIndex++;
             }
             
             //Setting properties for 2x2 ad size
             else if (eventObjects[index].adType == 2)
             {
-                EventOuterPanels[index].Padding = new Thickness(10);
+                // EventOuterPanels[index].Padding = new Thickness(10);
+                //EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
+                //EventInnerPanels[index].Padding = new Thickness(10, 50, 0, 0);
+                //EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
+                //bg.Stretch = Stretch.Fill;
+
                 EventInnerPanels[index].Width = 300;
                 EventInnerPanels[index].Height = 300;
-                EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
-                EventInnerPanels[index].Padding = new Thickness(10, 50, 0, 0);
-                EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
+                
                 Grid.SetColumn(EventOuterPanels[index], 0);
                 Grid.SetColumnSpan(EventOuterPanels[index], 2);
-                //Grid.SetRowSpan(EventOuterPanels[index], 2);
                 Rows[rowIndex].Height = new GridLength(300);
                 colIndex = 1;
-                bg.Stretch = Stretch.Fill;
-                //Content.Height = Content.Height + 350;
+                
                 EventGrid.Height = EventGrid.Height + 350;
 
             }
-            else if (eventObjects[index].adType == 3)
-            {
-                EventOuterPanels[index].Padding = new Thickness(10);
-                EventInnerPanels[index].Width = 300;
-                EventInnerPanels[index].Height = 500;
-                EventInnerPanels[index].HorizontalAlignment = HorizontalAlignment.Center;
-                EventInnerPanels[index].Padding = new Thickness(10, 50, 0, 0);
-                EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
-                Grid.SetColumn(EventOuterPanels[index], 0);
-                Grid.SetColumnSpan(EventOuterPanels[index], 3);
-                //Grid.SetRowSpan(EventOuterPanels[index], 2);
-                Rows[rowIndex].Height = new GridLength(260);
-                colIndex = 1;
-                bg.Stretch = Stretch.Fill;
-                Content.Height = Content.Height + 450;
-
-                //rowIndex++;
-            }
-
-            Debug.WriteLine("event: " + index + "row:" + rowIndex);
+            
 
             //Increase rows after second column
             if (colIndex == 1) rowIndex++;
@@ -468,6 +454,9 @@ namespace gOulu
             MainPage.content.Height = 900;
 
             EventOuterPanels[index].Tapped += (sender, e) => eventTapped(sender, e, index);
+
+
+           
             //EventInnerPanels[index].Style = innerpanelstyle;
         }
 
