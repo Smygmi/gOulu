@@ -361,11 +361,11 @@ namespace gOulu
                 if (i == 0)
                 {
                     GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
-                    //GridTexts[0].Style = event0style;
+                    GridTexts[0].Style = event0style;
                 }
                 if (eventObjects[index].adType == 1)
                 {
-                   // GridTexts[0].Style = event1style;                    
+                    GridTexts[0].Style = event1style;                    
                 }
                 else if (eventObjects[index].adType == 2)
                 {
