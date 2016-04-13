@@ -39,6 +39,10 @@
             <Setter Property="FontSize" Value ="10"/>
             <Setter Property="FontFamily" Value ="Arial"/>
             <Setter Property="Foreground" Value ="Black"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="Event2TextStyle" BasedOn="{StaticResource EventBaseTextStyle}">
@@ -49,11 +53,42 @@
         
         <Style TargetType="RelativePanel" x:Key="EventOuterPanelStyle">
             <Setter Property="Background" Value ="Goldenrod"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
         </Style>
 
         <Style TargetType="RelativePanel" x:Key="EventInnerPanelStyle">
             <Setter Property="Background" Value ="HotPink"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+
         </Style>
+
+        <Style TargetType="TextBlock" x:Key="Event0TextStyle" BasedOn="{StaticResource EventBaseTextStyle}">
+            <Setter Property="FontSize" Value ="12"/>
+            <Setter Property="FontFamily" Value ="Arial"/>
+            <Setter Property="Foreground" Value ="Black"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="Event1TextStyle" BasedOn="{StaticResource EventBaseTextStyle}">
+            <Setter Property="FontSize" Value ="15"/>
+            <Setter Property="FontFamily" Value ="Arial"/>
+            <Setter Property="Foreground" Value ="Black"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="EventBgStyle">
+            <Setter Property="Opacity" Value ="0.6"/>
+            <Setter Property="Stretch" Value ="Fill"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="EventBgUniformStyle" BasedOn="{StaticResource EventBgStyle}">
+            <Setter Property="Stretch" Value ="UniformToFill"/>
+        </Style>
+
+
 
     </Application.Resources>
 </Application>
