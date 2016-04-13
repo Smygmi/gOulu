@@ -90,8 +90,8 @@ namespace gOulu
         string eventDataAsString;
         Event[] eventObjects;
         char delimiterChar;
-        
 
+        Style eventstyle = (Style)Application.Current.Resources["EventBaseTextStyle"];
 
         public ContentPage()
         {
@@ -342,12 +342,14 @@ namespace gOulu
             for (int i = 0; i < GridTexts.Length; i++)
             {
 
-                GridTexts[i].TextWrapping = TextWrapping.Wrap;
+                GridTexts[i].Style = eventstyle;
+
+               /* GridTexts[i].TextWrapping = TextWrapping.Wrap;
                 GridTexts[i].TextAlignment = TextAlignment.Center;
                 GridTexts[i].VerticalAlignment = VerticalAlignment.Center;
                 GridTexts[i].HorizontalAlignment = HorizontalAlignment.Center;
                 GridTexts[i].FontSize = 13.0;
-                GridTexts[i].Foreground = black;
+                GridTexts[i].Foreground = black;*/
                 
                 if (i == 0) GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
                 if (eventObjects[index].adType == 1)
@@ -461,7 +463,7 @@ namespace gOulu
             MainPage.content.Height = 900;
 
             EventOuterPanels[index].Tapped += (sender, e) => eventTapped(sender, e, index);
-
+            
         }
 
         private async void eventTapped(object sender, RoutedEventArgs e, int index)

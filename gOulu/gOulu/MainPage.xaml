@@ -16,7 +16,7 @@
                 <!-- Header. Logo, slogan-->
                 <RelativePanel Name="Header" Height="50">
                     <Image Name="MainLogo" Height="50" Source="Assets/logoplaceholder.png" Tapped="logo_Tapped"/>
-                    <TextBlock Name="Slogan" Text="Events dat truly matter" Height="30" FontSize="15" VerticalAlignment="Bottom" Margin="150,0,-150,-50"/>
+                    <TextBlock Name="Slogan" Text="Events dat truly matter" Height="30" Style="{StaticResource SloganTextStyle}" VerticalAlignment="Bottom" Margin="150,0,-150,-50"/>
                 </RelativePanel>
 
 

@@ -4,5 +4,58 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:gOulu"
     RequestedTheme="Light">
+    <Application.Resources>
+        <Style TargetType="TextBlock" x:Key="SloganTextStyle">
+            <Setter Property="FontSize" Value ="14"/> 
+            <Setter Property="FontFamily" Value ="Arial"/> 
+            <Setter Property="Foreground" Value ="Black"/> 
+        </Style>
 
+        <Style TargetType="Button" x:Key="CategoryButtonStyle">
+            <Setter Property="FontSize" Value ="12"/> 
+            <Setter Property="FontFamily" Value ="Arial"/> 
+            <Setter Property="Foreground" Value ="Black"/> 
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="CategoryTitleStyle">
+            <Setter Property="FontSize" Value ="12"/>
+            <Setter Property="FontFamily" Value ="Arial"/>
+            <Setter Property="Foreground" Value ="Black"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="AppBackgroundStyle">
+            <Setter Property="Background" Value ="Bisque"/>
+        </Style>
+
+        <Style TargetType="RelativePanel" x:Key="HeaderStyle">
+            <Setter Property="Background" Value ="BlanchedAlmond"/>
+        </Style>
+
+        <Style TargetType="ScrollViewer" x:Key="CategoryMenuStyle">
+            <Setter Property="Background" Value ="BurlyWood"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="EventBaseTextStyle">
+            <Setter Property="FontSize" Value ="10"/>
+            <Setter Property="FontFamily" Value ="Arial"/>
+            <Setter Property="Foreground" Value ="Black"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="Event2TextStyle" BasedOn="{StaticResource EventBaseTextStyle}">
+            <Setter Property="FontSize" Value ="18"/>
+            <Setter Property="FontFamily" Value ="Arial"/>
+            <Setter Property="Foreground" Value ="Black"/>
+        </Style>
+        
+        <Style TargetType="RelativePanel" x:Key="EventOuterPanelStyle">
+            <Setter Property="Background" Value ="Goldenrod"/>
+        </Style>
+
+        <Style TargetType="RelativePanel" x:Key="EventInnerPanelStyle">
+            <Setter Property="Background" Value ="HotPink"/>
+        </Style>
+
+    </Application.Resources>
 </Application>
+
+
