@@ -90,8 +90,12 @@ namespace gOulu
         string eventDataAsString;
         Event[] eventObjects;
         char delimiterChar;
-        
 
+        Style eventstyle = (Style)Application.Current.Resources["EventBaseTextStyle"];
+        Style event2style = (Style)Application.Current.Resources["Event2TextStyle"];
+
+        Style outerpanelstyle = (Style)Application.Current.Resources["EventOuterPanelStyle"];
+        Style innerpanelstyle = (Style)Application.Current.Resources["EventInnerPanelStyle"];
 
         public ContentPage()
         {
@@ -314,7 +318,7 @@ namespace gOulu
 
             //Outer panel
             EventOuterPanels[index] = new RelativePanel();
-            EventOuterPanels[index].Background = grey;
+            EventOuterPanels[index].Style = outerpanelstyle;
             EventOuterPanels[index].Opacity = 1;
             EventOuterPanels[index].Margin = new Thickness(10);
             EventGrid.Children.Add(EventOuterPanels[index]);
@@ -325,7 +329,7 @@ namespace gOulu
             //EventInnerPanels[index].VerticalAlignment = VerticalAlignment.Center;
             EventInnerPanels[index].Opacity = 1;
 
-           // EventInnerPanels[index].Background = red;
+            
             EventOuterPanels[index].Children.Add(bg);
             EventOuterPanels[index].Children.Add(EventInnerPanels[index]);
 
@@ -342,12 +346,14 @@ namespace gOulu
             for (int i = 0; i < GridTexts.Length; i++)
             {
 
-                GridTexts[i].TextWrapping = TextWrapping.Wrap;
+                GridTexts[i].Style = eventstyle;
+
+               /* GridTexts[i].TextWrapping = TextWrapping.Wrap;
                 GridTexts[i].TextAlignment = TextAlignment.Center;
                 GridTexts[i].VerticalAlignment = VerticalAlignment.Center;
                 GridTexts[i].HorizontalAlignment = HorizontalAlignment.Center;
                 GridTexts[i].FontSize = 13.0;
-                GridTexts[i].Foreground = black;
+                GridTexts[i].Foreground = black;*/
                 
                 if (i == 0) GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
                 if (eventObjects[index].adType == 1)
@@ -359,8 +365,9 @@ namespace gOulu
                 }
                 else if (eventObjects[index].adType == 2)
                 {
-                    GridTexts[0].FontSize = 40;
-                    GridTexts[1].FontSize = 24;
+                    GridTexts[0].Style = event2style;
+                    //GridTexts[0].FontSize = 40;
+                    //GridTexts[1].FontSize = 24;
                 }
 
                 
@@ -461,7 +468,7 @@ namespace gOulu
             MainPage.content.Height = 900;
 
             EventOuterPanels[index].Tapped += (sender, e) => eventTapped(sender, e, index);
-
+            //EventInnerPanels[index].Style = innerpanelstyle;
         }
 
         private async void eventTapped(object sender, RoutedEventArgs e, int index)
