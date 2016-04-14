@@ -91,9 +91,7 @@ namespace gOulu
         Event[] eventObjects;
         char delimiterChar;
 
-        //blaa 
-
-        Style eventbg = (Style)Application.Current.Resources["EventBgStyle"];
+        /*Style eventbg = (Style)Application.Current.Resources["EventBgStyle"];
 
         Style eventstyle = (Style)Application.Current.Resources["EventBaseTextStyle"];
         Style event0style = (Style)Application.Current.Resources["Event0TextStyle"];
@@ -101,7 +99,7 @@ namespace gOulu
         Style event2style = (Style)Application.Current.Resources["Event2TextStyle"];
 
         Style outerpanelstyle = (Style)Application.Current.Resources["EventOuterPanelStyle"];
-        Style innerpanelstyle = (Style)Application.Current.Resources["EventInnerPanelStyle"];
+        Style innerpanelstyle = (Style)Application.Current.Resources["EventInnerPanelStyle"];*/
 
         
         public ContentPage()
@@ -329,7 +327,7 @@ namespace gOulu
 
             //Outer panel
             EventOuterPanels[index] = new RelativePanel();
-            EventOuterPanels[index].Style = outerpanelstyle;
+            //EventOuterPanels[index].Style = outerpanelstyle;
             //EventOuterPanels[index].Opacity = 1;
             //EventOuterPanels[index].Margin = new Thickness(10);
             EventGrid.Children.Add(EventOuterPanels[index]);
@@ -356,7 +354,7 @@ namespace gOulu
             {
 
                 //Adds base style for all text
-                GridTexts[i].Style = eventstyle;
+                //GridTexts[i].Style = eventstyle;
 
                 if (i == 0)
                 {
@@ -369,7 +367,7 @@ namespace gOulu
                 }
                 else if (eventObjects[index].adType == 2)
                 {
-                    GridTexts[0].Style = event2style;
+                    //GridTexts[0].Style = event2style;
                 }
 
                 

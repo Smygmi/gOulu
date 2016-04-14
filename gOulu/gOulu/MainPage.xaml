@@ -40,7 +40,11 @@
                                 <ColumnDefinition Width="110"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Style="{StaticResource CategoryButtonStyle}" x:Name="button_Musiikki"    Content="Musiikki"   Grid.Row="0" Grid.Column="0" Width="100" HorizontalAlignment="Center" Click="button_categoryMusic_Click" Tapped="button_categoryMusic_Click" Background="White"/>
+                            <Button Style="{StaticResource CategoryButtonStyle}" x:Name="button_Musiikki" Height="25"   Content=""   Grid.Row="0" Grid.Column="0" Width="100" HorizontalAlignment="Center" Click="button_categoryMusic_Click" Tapped="button_categoryMusic_Click">
+                                <Button.Background>
+                                    <ImageBrush Stretch="Fill" ImageSource="Assets/musiikkinappula.png"/>
+                                </Button.Background>
+                            </Button>
                             <Button Style="{StaticResource CategoryButtonStyle}" x:Name="button_Teatteri"    Content="Teatteri"      Background="#FFF"   Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Center" Click="button_categoryTheater_Click"/>
                             <Button Style="{StaticResource CategoryButtonStyle}" x:Name="button_Urheilu"     Content="Urheilu"       Background="#FFF"   Grid.Row="0" Grid.Column="2" Width="100" HorizontalAlignment="Center" Click="button_categorySport_Click"/>
                             <Button Style="{StaticResource CategoryButtonStyle}" x:Name="button_Hengelliset" Content="Hengelliset"   Background="#FFF"   Grid.Row="0" Grid.Column="3" Width="100" HorizontalAlignment="Center" Click="button_categorySpiritual_Click"/>
