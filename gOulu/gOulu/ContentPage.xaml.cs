@@ -91,7 +91,7 @@ namespace gOulu
         Event[] eventObjects;
         char delimiterChar;
 
-        /*Style eventbg = (Style)Application.Current.Resources["EventBgStyle"];
+        Style eventbg = (Style)Application.Current.Resources["EventBgStyle"];
 
         Style eventstyle = (Style)Application.Current.Resources["EventBaseTextStyle"];
         Style event0style = (Style)Application.Current.Resources["Event0TextStyle"];
@@ -99,7 +99,7 @@ namespace gOulu
         Style event2style = (Style)Application.Current.Resources["Event2TextStyle"];
 
         Style outerpanelstyle = (Style)Application.Current.Resources["EventOuterPanelStyle"];
-        Style innerpanelstyle = (Style)Application.Current.Resources["EventInnerPanelStyle"];*/
+        Style innerpanelstyle = (Style)Application.Current.Resources["EventInnerPanelStyle"];
 
         
         public ContentPage()
