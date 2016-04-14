@@ -8,16 +8,16 @@
     mc:Ignorable="d">
 
     <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="Auto" Opacity=".5">-->
-        
-        <ScrollViewer>
 
-            
-            <StackPanel Name="Content" Background="#F0F" Height="Auto" VerticalAlignment="Top">
-                
-                <ProgressRing x:Name="LoadingIndicator" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    <ScrollViewer>
 
-            </StackPanel>
-        
-        </ScrollViewer>
+
+        <RelativePanel Name="Content" Background="#F0F" Height="Auto" VerticalAlignment="Top">
+
+            <ProgressRing x:Name="LoadingIndicator" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="140,0,0,0" Height="68" Width="79"/>
+
+        </RelativePanel>
+
+    </ScrollViewer>
     <!--</Grid>-->
 </Page>
