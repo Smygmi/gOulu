@@ -86,6 +86,7 @@
         <Style TargetType="Image" x:Key="EventBgUniformStyle" BasedOn="{StaticResource EventBgStyle}">
             <Setter Property="Stretch" Value ="UniformToFill"/>
         </Style>
+        <!--..Versiokokeilua -->
 
 
 
