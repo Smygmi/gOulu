@@ -4,5 +4,116 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:gOulu"
     RequestedTheme="Light">
+    <Application.Resources>
 
+ 
+        
+        <Style TargetType="TextBlock" x:Key="SloganTextStyle">
+            <Setter Property="FontSize" Value ="14"/>
+            <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/>
+            <Setter Property="Foreground" Value ="Black"/>
+
+        </Style>
+
+        <Style TargetType="RelativePanel" x:Key="SloganPanelStyle">
+            <Setter Property="Background" Value="White"/>
+
+        </Style>
+        <Style TargetType="Button" x:Key="CategoryButtonStyle">
+            <Setter Property="FontSize" Value ="12"/>
+            <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/> 
+            <Setter Property="Foreground" Value ="Black"/> 
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="CategoryTitleStyle">
+            <Setter Property="FontSize" Value ="12"/>
+            <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/>
+            <Setter Property="Foreground" Value ="Black"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+        </Style>
+
+        <Style TargetType="RelativePanel" x:Key="CategoryPanelStyle">
+            <Setter Property="Background" Value ="#FFF"/>
+            <Setter Property="Opacity" Value="0.8"/>
+        </Style>
+
+        <Style TargetType="ImageBrush" x:Key="AppBackgroundStyle">
+            <Setter Property="ImageSource" Value ="Assets/IMG_0457.JPG"/>
+            <!-- <ImageBrush Stretch="UniformToFill" ImageSource="Assets/IMG_0457.JPG"/>-->
+        </Style>
+
+        <Style TargetType="RelativePanel" x:Key="HeaderStyle">
+        </Style>
+
+        <Style TargetType="ScrollViewer" x:Key="CategoryMenuStyle">
+
+        </Style>
+
+       
+        
+        <Style TargetType="RelativePanel" x:Key="EventOuterPanelStyle">
+            <Setter Property="Background" Value ="White"/>
+            <Setter Property="Opacity" Value=".8"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <Style TargetType="RelativePanel" x:Key="EventInnerPanel0Style">
+            <Setter Property="Background" Value ="HotPink"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Padding" Value="10,10,10,10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="EventBaseTextStyle">
+            <Setter Property="FontSize" Value ="12"/>
+            <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/>
+            <Setter Property="Foreground" Value ="Black"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        
+        <!-- Adtype 0 Title styling, Adtype 1 Date styling -->
+        <Style TargetType="TextBlock" x:Key="Event0TextStyle" BasedOn="{StaticResource EventBaseTextStyle}">
+            <Setter Property="FontSize" Value ="16"/>
+            <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/>
+            <Setter Property="Foreground" Value ="Black"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+
+        <!-- Adtype 1 Title styling, Adtype 2 Date styling -->
+        <Style TargetType="TextBlock" x:Key="Event1TextStyle" BasedOn="{StaticResource EventBaseTextStyle}">
+            <Setter Property="FontSize" Value ="25"/>
+            <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/>
+            <Setter Property="Foreground" Value ="Black"/>
+        </Style>
+        
+        <!-- Adtype 2 Title styling -->
+        <Style TargetType="TextBlock" x:Key="Event2TextStyle" BasedOn="{StaticResource EventBaseTextStyle}">
+            <Setter Property="FontSize" Value ="40"/>
+            <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/>
+            <Setter Property="Foreground" Value ="Black"/>
+        </Style>
+        
+        <Style TargetType="Image" x:Key="EventBgStyle">
+            <Setter Property="Opacity" Value ="0.6"/>
+            <Setter Property="Stretch" Value ="Fill"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="EventBgUniformStyle" BasedOn="{StaticResource EventBgStyle}">
+            <Setter Property="Stretch" Value ="UniformToFill"/>
+        </Style>
+        <!--..Versiokokeilua -->
+
+
+
+    </Application.Resources>
 </Application>
+
+
