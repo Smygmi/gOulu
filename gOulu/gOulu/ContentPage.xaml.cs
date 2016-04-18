@@ -86,6 +86,11 @@ namespace gOulu
         StackPanel[] EventInnerPanels;
         RelativePanel[] EventOuterPanels;
 
+        TextBlock[] notes;
+        StackPanel[] linkPanel;
+        TextBlock[] link;
+        bool[] hidden;
+
         //For event parsing
         string eventDataAsString;
         Event[] eventObjects;
@@ -207,8 +212,8 @@ namespace gOulu
             while (reader.Read()) {
                 if (reader.Value != null)
                     eventDataStrings.Add(reader.Value.ToString());
-                
-                else if (reader.TokenType == JsonToken.StartObject){
+
+                else if (reader.TokenType == JsonToken.StartObject) {
                     index++;
                 }
             }
@@ -233,7 +238,7 @@ namespace gOulu
                     string formattedDateTime = dateTimeString[2] + "." + dateTimeString[1] + "." + dateTimeString[0] + " " + dateTimeString[3] + ":" + dateTimeString[4];
                     filteredList.Add(formattedDateTime);
                 }
-               else if (eventDataStrings[i - 1] == "Rating")
+                else if (eventDataStrings[i - 1] == "Rating")
                 {
                     filteredList.Add("" + eventDataStrings[i]);
                     filteredList.Add("EndOfObject");
@@ -242,8 +247,8 @@ namespace gOulu
                 {
                     filteredList.Add("" + eventDataStrings[i]);
                 }
-                
-             }
+
+            }
 
             index = 0;
 
@@ -251,9 +256,12 @@ namespace gOulu
             EventInnerPanels = new StackPanel[eventObjects.Length];
             EventOuterPanels = new RelativePanel[eventObjects.Length];
             Rows = new RowDefinition[eventObjects.Length + 100];
-            
+            hidden = new bool[eventObjects.Length];
+            notes = new TextBlock[eventObjects.Length];
+            linkPanel = new StackPanel[eventObjects.Length];
+            link = new TextBlock[eventObjects.Length];
 
-                for (int i = 0; i < filteredList.Count; i++)
+            for (int i = 0; i < filteredList.Count; i++)
                 { 
                     if (filteredList[i] == "EndOfObject")
                     {
@@ -383,6 +391,28 @@ namespace gOulu
             Grid.SetRow(EventOuterPanels[index], rowIndex);
 
 
+            /*notes = new TextBlock[12];
+            eventObjects[index].notes = "Tämä on paras tapahtuma vittu ikinä maailmassa";
+           // notes[index].Text = eventObjects[index].notes;
+            Debug.WriteLine(notes[index]);
+            /*
+            notes[index].TextWrapping = TextWrapping.Wrap;
+            
+
+
+            link[index].Text = "Linkki";
+            link[index].VerticalAlignment = VerticalAlignment.Bottom;
+
+            linkPanel[index].Children.Add(notes[index]);
+            linkPanel[index].Children.Add(link[index]);
+
+            linkPanel[index].Visibility = Visibility.Collapsed;
+            EventInnerPanels[index].Children.Add(linkPanel[index]);
+
+            hidden[index] = true;
+            */
+
+
 
             //Setting column index for 1x1 ad size
             if (eventObjects[index].adType == 0)
@@ -447,18 +477,36 @@ namespace gOulu
 
             MainPage.content.Height = 900;
 
-            EventOuterPanels[index].Tapped += (sender, e) => eventTapped(sender, e, index);
 
 
-           
             
+            
+            
+
+            EventOuterPanels[index].Tapped += (sender, e) => eventlinkTapped(sender, e, index);
+           
         }
 
-        private async void eventTapped(object sender, RoutedEventArgs e, int index)
+        /*private void eventTapped(object sender, RoutedEventArgs e, int index)
+        {
+            if (hidden[index] != true)
+            {
+                linkPanel[index].Visibility = Visibility.Visible;
+
+                hidden[index] = true;
+            }
+            else
+            {
+
+                linkPanel[index].Visibility = Visibility.Collapsed;
+                hidden[index] = false;
+            }
+        }*/
+
+        private async void eventlinkTapped(object sender, RoutedEventArgs e, int index)
         {
             bool success = await Launcher.LaunchUriAsync(new Uri(eventObjects[index].websiteURL));
         }
-
 
         //Designates database table category with receiving parameter
         protected override void OnNavigatedTo(NavigationEventArgs e)
