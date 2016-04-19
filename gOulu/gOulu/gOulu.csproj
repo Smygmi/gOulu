@@ -115,7 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\GOULUheader.png" />
-    <Content Include="Assets\harrastukset_ikoni.png" />
+    <Content Include="Assets\harrastajat_ikoni.png" />
     <Content Include="Assets\hengelliset_ikoni.png" />
     <Content Include="Assets\IkoniGOuluSplash.png" />
     <Content Include="Assets\IkoniGOulu.png" />
@@ -128,7 +128,7 @@
     <Content Include="Assets\messut_ikoni.png" />
     <Content Include="Assets\musiikki_ikoni.png" />
     <Content Include="Assets\muut_ikoni.png" />
-    <Content Include="Assets\politiikka_ikoni.png" />
+    <Content Include="Assets\poliittiset_ikoni.png" />
     <Content Include="Assets\teatteri_ikoni.png" />
     <Content Include="Assets\urheilu_ikoni.png" />
     <Content Include="Assets\yoelama_ikoni.png" />

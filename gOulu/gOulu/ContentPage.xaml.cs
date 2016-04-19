@@ -58,17 +58,32 @@ namespace gOulu
     {
         //Category
         public string category;
-        Uri featured =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getFeaturedTable.php");
-        Uri musiikki =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMusiikkiTable.php");
-        Uri teatteri =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getTeatteriTable.php");
-        Uri urheilu =       new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getUrheiluTable.php");
-        Uri hengelliset =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getHengellisetTable.php");
-        Uri poliittiset =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getPoliittisetTable.php");
-        Uri yoelama =       new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getYoelamaTable.php");
-        Uri koulutus =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getKoulutusTable.php");
-        Uri harrastajat =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getHarrastusTable.php");
-        Uri messut =        new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMessutTable.php");
-        Uri muut =          new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMuuTable.php");
+        Uri featured =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getFeaturedTable.php", UriKind.Absolute);
+        Uri musiikki =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMusiikkiTable.php", UriKind.Absolute);
+        Uri teatteri =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getTeatteriTable.php", UriKind.Absolute);
+        Uri urheilu =       new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getUrheiluTable.php", UriKind.Absolute);
+        Uri hengelliset =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getHengellisetTable.php", UriKind.Absolute);
+        Uri poliittiset =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getPoliittisetTable.php", UriKind.Absolute);
+        Uri yoelama =       new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getYoelamaTable.php", UriKind.Absolute);
+        Uri koulutus =      new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getKoulutusTable.php", UriKind.Absolute);
+        Uri harrastajat =   new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getHarrastusTable.php", UriKind.Absolute);
+        Uri messut =        new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMessutTable.php", UriKind.Absolute);
+        Uri muut =          new Uri("http://www.students.oamk.fi/~t4hevi00/mobileWinApi/getMuuTable.php", UriKind.Absolute);
+
+        //Category icon paths
+
+        string musiikkiIconUrl =    "/Assets/musiikki_ikoni.png";
+        string teatteriIconUrl =    "/Assets/teatteri_ikoni.png";
+        string urheiluIconUrl =     "/Assets/urheilu_ikoni.png";
+        string hengellisetIconUrl = "/Assets/hengelliset_ikoni.png";
+        string poliittisetIconUrl = "/Assets/poliittiset_ikoni.png";
+        string yoelamaIconUrl =     "/Assets/yoelama_ikoni.png";
+        string koulutusIconUrl =    "/Assets/koulutus_ikoni.png";
+        string harrastajatIconUrl = "/Assets/harrastajat_ikoni.png";
+        string messutIconUrl =      "/Assets/messut_ikoni.png";
+        string muutIconUrl =        "/Assets/muut_ikoni.png";
+
+
 
         //Change these colors to theme later
         SolidColorBrush white = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 255, G = 255, B = 255 });
@@ -76,6 +91,17 @@ namespace gOulu
         SolidColorBrush black = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 0, G = 0, B = 0 });
         SolidColorBrush grey = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 230, G = 230, B = 230 });
         SolidColorBrush transparent = new SolidColorBrush(new Windows.UI.Color() { A = 0, R = 0, G = 0, B = 0 });
+
+        SolidColorBrush teatteriBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 141, G = 30, B = 55 });
+        SolidColorBrush koulutusBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 192, G = 14, B = 45 });
+        SolidColorBrush harrastajatBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 201, G = 75, B = 33 });
+        SolidColorBrush urheiluBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 215, G = 135, B = 32 });
+        SolidColorBrush messutBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 234, G = 190, B = 129 });
+        SolidColorBrush yoelamaBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 137, G = 30, B = 111 });
+        SolidColorBrush musiikkiBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 145, G = 60, B = 123 });
+        SolidColorBrush hengellisetBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 85, G = 42, B = 127 });
+        SolidColorBrush poliittisetBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 127, G = 95, B = 160 });
+        SolidColorBrush muutBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 184, G = 157, B = 194 });
 
         //EventGrid
         Grid EventGrid = new Grid();
@@ -194,6 +220,7 @@ namespace gOulu
                 eventDataAsString = httpResponseBody;
                 LoadingIndicator.IsActive = false;
                 GenerateGridData();
+                Debug.WriteLine(httpResponseBody);
             }
 
             catch (Exception ex)
@@ -353,7 +380,7 @@ namespace gOulu
 
 
 
-            /////
+            // Kategory icon and color
 
             Ellipse ellipse = new Ellipse();
             ellipse.Fill = red;
@@ -361,7 +388,57 @@ namespace gOulu
             ellipse.Height = 60;
 
             Image ikoni = new Image();
-            string url = "/Assets/messut_ikoni.png";
+
+            string url = "";
+
+            switch (eventObjects[index].category)
+            {
+                case "featured":
+                    url = musiikkiIconUrl;
+                    break;
+                case "musiikki":
+                    url = musiikkiIconUrl;
+                    ellipse.Fill = musiikkiBrush;
+                    break;
+                case "teatteri":
+                    url = teatteriIconUrl;
+                    ellipse.Fill = teatteriBrush;
+                    break;
+                case "urheilu":
+                    url = urheiluIconUrl;
+                    ellipse.Fill = urheiluBrush;
+                    break;
+                case "hengelliset":
+                    url = hengellisetIconUrl;
+                    ellipse.Fill = hengellisetBrush;
+                    break;
+                case "poliittiset":
+                    url = poliittisetIconUrl;
+                    ellipse.Fill = poliittisetBrush;
+                    break;
+                case "yoelama":
+                    url = yoelamaIconUrl;
+                    ellipse.Fill = yoelamaBrush;
+                    break;
+                case "koulutus":
+                    url = koulutusIconUrl;
+                    ellipse.Fill = koulutusBrush;
+                    break;
+                case "harrastajat":
+                    url = harrastajatIconUrl;
+                    ellipse.Fill = harrastajatBrush;
+                    break;
+                case "messut":
+                    url = messutIconUrl;
+                    ellipse.Fill = messutBrush;
+                    break;
+                case "muut":
+                    url = muutIconUrl;
+                    ellipse.Fill = muutBrush;
+                    break;
+
+            }
+            
 
             try
             {
@@ -378,6 +455,9 @@ namespace gOulu
             iconPanel.Children.Add(ikoni);
             iconPanel.Margin = new Thickness(-20, -30, 0, 0);
             EventOuterPanels[index].Children.Add(iconPanel);
+
+            ////
+
 
             //Text elements
             GridTexts[0] = eventObjects[index].GridEventName;
