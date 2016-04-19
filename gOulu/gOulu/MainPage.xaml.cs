@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Text;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace gOulu
 {
@@ -26,72 +27,80 @@ namespace gOulu
 
             content = this.ContentPanel;
             ContentFrame.Navigate(typeof(ContentPage), "featured");
-            categoryTitle.Text = "Featured";
+            //categoryTitle.Text = "Featured";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/musicBG.png"));
         }
 
         private void button_categoryMusic_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "musiikki");
-            categoryTitle.Text = "Musiikki";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/musicBG.png"));
+            //categoryTitle.Text = "Musiikki";
         }
 
         private void button_categoryTheater_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "teatteri");
-            categoryTitle.Text = "Teatteri";
+            //categoryTitle.Text = "Teatteri";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/theaterBG.png"));
         }
 
         private void button_categorySport_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "urheilu");
-            categoryTitle.Text = "Urheilu";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/sportsBG.png"));
+            //categoryTitle.Text = "Urheilu";
         }
 
         private void button_categorySpiritual_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "hengelliset");
-            categoryTitle.Text = "Hengelliset";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/spiritualBG.png"));
+            //categoryTitle.Text = "Hengelliset";
         }
 
         private void button_categoryPolitical_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "poliittiset");
-            categoryTitle.Text = "Poliittiset";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/politicalBG.png"));
         }
 
         private void button_categoryNightlife_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "yoelama");
-            categoryTitle.Text = "Yöelämä";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/nightlifeBG.png"));
+            //categoryTitle.Text = "Yöelämä";
         }
         private void button_categoryEducation_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "koulutus");
-            categoryTitle.Text = "Koulutus";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/educationBG.png"));
+            //categoryTitle.Text = "Koulutus";
         }
 
         private void button_categoryHobbies_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "harrastajat");
-            categoryTitle.Text = "Harrastajat";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/hobbiesBG.png"));
         }
 
         private void button_categoryExpo_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "messut");
-            categoryTitle.Text = "Messut";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/expoBG.png"));
         }
 
         private void button_categoryOthers_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "muut");
-            categoryTitle.Text = "Muut";
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/othersBG.png"));
+            //categoryTitle.Text = "Muut";
         }
 
         private void logo_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ContentPage), "featured");
-            categoryTitle.Text = "Featured";
+            //categoryTitle.Text = "Featured";
         }
     }
 }

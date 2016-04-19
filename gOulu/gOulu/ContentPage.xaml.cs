@@ -72,16 +72,16 @@ namespace gOulu
 
         //Category icon paths
 
-        string musiikkiIconUrl =    "/Assets/musiikki_ikoni.png";
-        string teatteriIconUrl =    "/Assets/teatteri_ikoni.png";
-        string urheiluIconUrl =     "/Assets/urheilu_ikoni.png";
-        string hengellisetIconUrl = "/Assets/hengelliset_ikoni.png";
-        string poliittisetIconUrl = "/Assets/poliittiset_ikoni.png";
-        string yoelamaIconUrl =     "/Assets/yoelama_ikoni.png";
-        string koulutusIconUrl =    "/Assets/koulutus_ikoni.png";
-        string harrastajatIconUrl = "/Assets/harrastajat_ikoni.png";
-        string messutIconUrl =      "/Assets/messut_ikoni.png";
-        string muutIconUrl =        "/Assets/muut_ikoni.png";
+        string musiikkiIconUrl =    "/Assets/Icons/musiikki_ikoni.png";
+        string teatteriIconUrl = "/Assets/Icons/teatteri_ikoni.png";
+        string urheiluIconUrl = "/Assets/Icons/urheilu_ikoni.png";
+        string hengellisetIconUrl = "/Assets/Icons/hengelliset_ikoni.png";
+        string poliittisetIconUrl = "/Assets/Icons/poliittiset_ikoni.png";
+        string yoelamaIconUrl = "/Assets/Icons/yoelama_ikoni.png";
+        string koulutusIconUrl = "/Assets/Icons/koulutus_ikoni.png";
+        string harrastajatIconUrl = "/Assets/Icons/harrastajat_ikoni.png";
+        string messutIconUrl = "/Assets/Icons/messut_ikoni.png";
+        string muutIconUrl = "/Assets/Icons/muut_ikoni.png";
 
 
 
@@ -99,8 +99,8 @@ namespace gOulu
         SolidColorBrush messutBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 234, G = 190, B = 129 });
         SolidColorBrush yoelamaBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 137, G = 30, B = 111 });
         SolidColorBrush musiikkiBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 145, G = 60, B = 123 });
-        SolidColorBrush hengellisetBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 85, G = 42, B = 127 });
-        SolidColorBrush poliittisetBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 127, G = 95, B = 160 });
+        SolidColorBrush poliittisetBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 85, G = 42, B = 127 });
+        SolidColorBrush hengellisetBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 127, G = 95, B = 160 });
         SolidColorBrush muutBrush = new SolidColorBrush(new Windows.UI.Color() { A = 255, R = 184, G = 157, B = 194 });
 
         //EventGrid
@@ -172,60 +172,76 @@ namespace gOulu
 
             Uri requestUri = featured;
 
-            switch (category)
-            {
-                case "featured":
-                    requestUri = featured;
-                    break;
-                case "musiikki":
-                    requestUri = musiikki;
-                    break;
-                case "teatteri":
-                    requestUri = teatteri;
-                    break;
-                case "urheilu":
-                    requestUri = urheilu;
-                    break;
-                case "hengelliset":
-                    requestUri = hengelliset;
-                    break;
-                case "poliittiset":
-                    requestUri = poliittiset;
-                    break;
-                case "yoelama":
-                    requestUri = yoelama;
-                    break;
-                case "koulutus":
-                    requestUri = koulutus;
-                    break;
-                case "harrastajat":
-                    requestUri = harrastajat;
-                    break;
-                case "messut":
-                    requestUri = messut;
-                    break;
-                case "muut":
-                    requestUri = muut;
-                    break;
-            }
-                
-            string httpResponseBody = "";
 
-            try
+
+            //THIS IF ELSE FUNCTION + MANUALDEMOGENERATE() IS ONLY FOR DEMOING THE 
+            //FEATURE PAGE WHICH SHOWS THE HIGHEST PAID ADS FROM OTHER CATEGORIES
+            if (category == "featured")
             {
-                //Send the GET request
-                httpResponse = await httpClient.GetAsync(requestUri);
-                httpResponse.EnsureSuccessStatusCode();
-                httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                eventDataAsString = httpResponseBody;
                 LoadingIndicator.IsActive = false;
-                GenerateGridData();
-                Debug.WriteLine(httpResponseBody);
+                ManualDemoGenerate();
             }
+            else {
 
-            catch (Exception ex)
-            {
-                httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                switch (category)
+                {
+                    case "featured":
+                        requestUri = featured;
+
+                        break;
+                    //break;
+                    case "musiikki":
+                        requestUri = musiikki;
+                        break;
+                    case "teatteri":
+                        requestUri = teatteri;
+                        break;
+                    case "urheilu":
+                        requestUri = urheilu;
+                        break;
+                    case "hengelliset":
+                        requestUri = hengelliset;
+                        break;
+                    case "poliittiset":
+                        requestUri = poliittiset;
+                        break;
+                    case "yoelama":
+                        requestUri = yoelama;
+                        break;
+                    case "koulutus":
+                        requestUri = koulutus;
+                        break;
+                    case "harrastajat":
+                        requestUri = harrastajat;
+                        break;
+                    case "messut":
+                        requestUri = messut;
+                        break;
+                    case "muut":
+                        requestUri = muut;
+                        break;
+                }
+
+                string httpResponseBody = "";
+
+                try
+                {
+                    //Send the GET request
+                    httpResponse = await httpClient.GetAsync(requestUri);
+                    httpResponse.EnsureSuccessStatusCode();
+                    httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    eventDataAsString = httpResponseBody;
+                    LoadingIndicator.IsActive = false;
+                    GenerateGridData();
+                    Debug.WriteLine(httpResponseBody);
+                }
+
+                catch (Exception ex)
+                {
+                    httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                }
+
+
             }
         }
 
@@ -248,7 +264,7 @@ namespace gOulu
             }
 
             //Create event object arrays
-            eventObjects = new Event[index];
+            eventObjects = new Event[index + 1];
 
 
             //Filter values from value keys        
@@ -282,8 +298,8 @@ namespace gOulu
             index = 0;
 
             //Create enough panels for events
-            EventInnerPanels = new StackPanel[eventObjects.Length];
-            EventOuterPanels = new RelativePanel[eventObjects.Length];
+            EventInnerPanels = new StackPanel[eventObjects.Length + 1];
+            EventOuterPanels = new RelativePanel[eventObjects.Length + 1];
             Rows = new RowDefinition[eventObjects.Length + 100];
             hidden = new bool[eventObjects.Length];
             notes = new TextBlock[eventObjects.Length];
@@ -294,33 +310,167 @@ namespace gOulu
                 { 
                     if (filteredList[i] == "EndOfObject")
                     {
-                    eventObjects[index] = new Event()
-                    {
-                        name = filteredList[i - 14],
-                        location = filteredList[i - 13],
-                        streetAddress = filteredList[i - 12],
-                        postalCode = filteredList[i - 11],
-                        city = filteredList[i - 10],
-                        startDateTime = filteredList[i - 9],
-                        endDateTime = filteredList[i - 8],
+                        eventObjects[index] = new Event()
+                        {
+                            name = filteredList[i - 14],
+                            location = filteredList[i - 13],
+                            streetAddress = filteredList[i - 12],
+                            postalCode = filteredList[i - 11],
+                            city = filteredList[i - 10],
+                            startDateTime = filteredList[i - 9],
+                            endDateTime = filteredList[i - 8],
 
-                        notes = filteredList[i - 6],
-                        ageLimit = filteredList[i - 5],
-                        websiteURL = filteredList[i - 4],
-                        pictureURL = filteredList[i - 3],
-                        entryAdded = filteredList[i - 2],
-                        adType = int.Parse(filteredList[i - 1]),
-                        category = category
-                        };
-                    double.TryParse(filteredList[i - 7], out eventObjects[index].price);
+                            notes = filteredList[i - 6],
+                            ageLimit = filteredList[i - 5],
+                            websiteURL = filteredList[i - 4],
+                            pictureURL = filteredList[i - 3],
+                            entryAdded = filteredList[i - 2],
+                            adType = int.Parse(filteredList[i - 1]),
+                            category = category
+                            };
+                        double.TryParse(filteredList[i - 7], out eventObjects[index].price);
                    
-                    GenerateGridEntry(index);
-                    index++;
-                    }
-                    
-                }
+                        GenerateGridEntry(index);
+                        index++;
+                  }   
+              }
+
+            CreateEmpty(index);
+      }
+
+
+        //This function creates an empty entry so half-gridwidth entries show in full in the end of the page
+        void CreateEmpty(int index)
+        {
+            eventObjects[index] = new Event()
+            {
+                name = "",
+                location = "",
+                streetAddress = "",
+                postalCode = "",
+                city = "",
+                startDateTime = "",
+                endDateTime = "",
+
+                notes = "",
+                ageLimit = "",
+                websiteURL = "http://www.google.com",
+                pictureURL = "http://www.google.com",
+                entryAdded = "",
+                adType = 0,
+                category = "empty"
+            };
+            double.TryParse("0", out eventObjects[index].price);
+
+            GenerateGridEntry(index);
+            index++;
         }
 
+        void ManualDemoGenerate()
+        {
+            
+            int index = 0;
+            eventObjects = new Event[4];
+
+            //Create enough panels for events
+            EventInnerPanels = new StackPanel[eventObjects.Length];
+            EventOuterPanels = new RelativePanel[eventObjects.Length];
+            Rows = new RowDefinition[eventObjects.Length + 100];
+            hidden = new bool[eventObjects.Length];
+            notes = new TextBlock[eventObjects.Length];
+            linkPanel = new StackPanel[eventObjects.Length];
+            link = new TextBlock[eventObjects.Length];
+
+                    eventObjects[index] = new Event()
+                    {
+                        name = "Laulajien konsertti",
+                        location = "",
+                        streetAddress = "Törmäntie 15",
+                        postalCode = "90830",
+                        city = "Haukipudas",
+                        startDateTime = "20.4.2016 18:00",
+                        endDateTime = "20.4.2016",
+
+                        notes = "Yhteislaulua Esko Holapan säestyksellä. Kahvia ja arpoja myytävänä. järj. Haukiputaan eläkeläisyhdistysten ja rintamaveteraanien virkistystoimikunta",
+                        ageLimit = "0",
+                        websiteURL = "http://www.google.com",
+                        pictureURL = "http://www.google.com",
+                        entryAdded = "20.4.2016",
+                        adType = 2,
+                        category = "musiikki"
+                    };
+                    double.TryParse("0", out eventObjects[index].price);
+
+                    GenerateGridEntry(index);
+                    index++;
+
+            eventObjects[index] = new Event()
+            {
+                name = "Juoksuliike: Yhteistreenit",
+                location = "",
+                streetAddress = "Raatintie 2",
+                postalCode = "90100",
+                city = "Oulu",
+                startDateTime = "20.4.2016 18:00",
+                endDateTime = "29.5.2016",
+
+                notes = "Yhteisjuoksuja ja Juoksukouluja ympäri Suomen järjestävä Juoksuliike nyt myös Oulusa!",
+                ageLimit = "0",
+                websiteURL = "http://www.google.com",
+                pictureURL = "http://www.google.com",
+                entryAdded = "20.4.2016",
+                adType = 1,
+                category = "urheilu"
+            };
+            double.TryParse("110", out eventObjects[index].price);
+
+            GenerateGridEntry(index);
+            index++;
+
+            eventObjects[index] = new Event()
+            {
+                name = "Gorilla Gorilla",
+                location = "",
+                streetAddress = "Kaarlenväylä 2",
+                postalCode = "90100",
+                city = "Oulu",
+                startDateTime = "20.4.2016 10:00, 18:00",
+                endDateTime = "28.4.2016",
+
+                notes = "Viidakon valtaamassa ostoskeskuksessa asuu lauma poliisiksi pukeutuneita gorilloja. Ne ovat pehmeitä, virkaintoisia ja ilahtuvat kovasti törmätessään uuteen asiaan. Banaanien lisäksi niitä kiinnostavat esimerkiksi autot, nenänkaivuu, rannalla löhöily, ihmiset, evoluutio ja liikennesäännöt. Gorillapoliisit ovat käsistään käteviä ja äärimmäisen älykkäitä. Samaan aikaan kun joku niistä kiipeää puuhun, saattaa toinen keksiä vaikkapa avaruusraketin. Ja vaikka joskus käy hassusti, tulee kolari tai ydinjäte ei katoakaan maton alle, niin onneksi asiat unohtuvat nopeasti, heti seuraavan kivan jutun myötä!",
+                ageLimit = "0",
+                websiteURL = "http://www.google.com",
+                pictureURL = "http://www.google.com",
+                entryAdded = "20.4.2016",
+                adType = 0,
+                category = "teatteri"
+            };
+            GenerateGridEntry(index);
+            index++;
+            eventObjects[index] = new Event()
+            {
+                name = "Gorilla Gorilla",
+                location = "",
+                streetAddress = "Kaarlenväylä 2",
+                postalCode = "90100",
+                city = "Oulu",
+                startDateTime = "20.4.2016 10:00, 18:00",
+                endDateTime = "28.4.2016",
+
+                notes = "Viidakon valtaamassa ostoskeskuksessa asuu lauma poliisiksi pukeutuneita gorilloja. Ne ovat pehmeitä, virkaintoisia ja ilahtuvat kovasti törmätessään uuteen asiaan. Banaanien lisäksi niitä kiinnostavat esimerkiksi autot, nenänkaivuu, rannalla löhöily, ihmiset, evoluutio ja liikennesäännöt. Gorillapoliisit ovat käsistään käteviä ja äärimmäisen älykkäitä. Samaan aikaan kun joku niistä kiipeää puuhun, saattaa toinen keksiä vaikkapa avaruusraketin. Ja vaikka joskus käy hassusti, tulee kolari tai ydinjäte ei katoakaan maton alle, niin onneksi asiat unohtuvat nopeasti, heti seuraavan kivan jutun myötä!",
+                ageLimit = "0",
+                websiteURL = "http://www.google.com",
+                pictureURL = "http://www.google.com",
+                entryAdded = "20.4.2016",
+                adType = 0,
+                category = "teatteri"
+            };
+            double.TryParse("10", out eventObjects[index].price);
+
+            GenerateGridEntry(index);
+            index++;
+
+        }
 
         //Generates Grid Block for the current event
         void GenerateGridEntry(int index)
@@ -384,8 +534,7 @@ namespace gOulu
 
             Ellipse ellipse = new Ellipse();
             ellipse.Fill = red;
-            ellipse.Width = 60;
-            ellipse.Height = 60;
+            
 
             Image ikoni = new Image();
 
@@ -450,10 +599,13 @@ namespace gOulu
             {
 
             }
+            ellipse.Width = 50;
+            ellipse.Height = 50;
+
             RelativePanel iconPanel = new RelativePanel();
             iconPanel.Children.Add(ellipse);
             iconPanel.Children.Add(ikoni);
-            iconPanel.Margin = new Thickness(-20, -30, 0, 0);
+            iconPanel.Margin = new Thickness(-20, -20, 0, 0);
             EventOuterPanels[index].Children.Add(iconPanel);
 
             ////
@@ -532,6 +684,7 @@ namespace gOulu
                 EventGrid.Height = EventGrid.Height + 200;
 
                 EventInnerPanels[index].Padding = new Thickness(0, 30, 0, 0);
+
             }
 
             //Setting properties for 2x1 ad size
@@ -549,14 +702,14 @@ namespace gOulu
                 colIndex = 1;
                 EventGrid.Height = EventGrid.Height + 170;
 
-                EventInnerPanels[index].Padding = new Thickness(0, 40, 0, 0);
+                EventInnerPanels[index].Padding = new Thickness(10, 40, 10, 0);
             }
             
             //Setting properties for 2x2 ad size
             else if (eventObjects[index].adType == 2)
             {
 
-                EventInnerPanels[index].Width = 300;
+                EventInnerPanels[index].Width = 280;
                 EventInnerPanels[index].Height = 300;
 
                 EventInnerPanels[index].Padding = new Thickness(0, 65, 0, 0);
@@ -578,19 +731,27 @@ namespace gOulu
             //Increase rows after second column
             if (colIndex == 1) rowIndex++;
 
-            
+
             //Variate between columns 0/1
             if (colIndex == 0) colIndex = 1;
             else if (colIndex == 1) colIndex = 0;
 
+
             MainPage.content.Height = 900;
-
-
-
+            //EventGrid.Height = 2000;
+            eventScroller.Height = EventGrid.Height + 200;
+            
+            Debug.WriteLine("mainpage content height " + MainPage.content.Height);
+            Debug.WriteLine("eventgrid height " + EventGrid.Height);
+            Debug.WriteLine("scroller height " + eventScroller.Height);
             
             
             
-
+            
+            if(eventObjects[index].category == "empty")
+            {
+                EventOuterPanels[index].Opacity = 0;
+            }
             EventOuterPanels[index].Tapped += (sender, e) => eventlinkTapped(sender, e, index);
            
         }
@@ -613,7 +774,10 @@ namespace gOulu
 
         private async void eventlinkTapped(object sender, RoutedEventArgs e, int index)
         {
-            bool success = await Launcher.LaunchUriAsync(new Uri(eventObjects[index].websiteURL));
+            if (eventObjects[index].websiteURL != "http://www.google.com")
+            {
+                bool success = await Launcher.LaunchUriAsync(new Uri(eventObjects[index].websiteURL));
+            }
         }
 
         //Designates database table category with receiving parameter

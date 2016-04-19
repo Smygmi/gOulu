@@ -9,7 +9,7 @@
 
     <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="Auto" Opacity=".5">-->
 
-    <ScrollViewer>
+    <ScrollViewer x:Name="eventScroller" VerticalScrollBarVisibility="Hidden">
 
 
         <RelativePanel Name="Content" Background="#F0F" Height="Auto" VerticalAlignment="Top">

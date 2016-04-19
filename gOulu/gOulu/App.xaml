@@ -56,7 +56,7 @@
             <Setter Property="Background" Value ="White"/>
             <Setter Property="Opacity" Value=".8"/>
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
         </Style>
 
         <Style TargetType="RelativePanel" x:Key="EventInnerPanel0Style">

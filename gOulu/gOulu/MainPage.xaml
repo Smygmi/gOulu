@@ -11,28 +11,26 @@
 
 
         <RelativePanel Name="TaustaPaneeli"  Width="Auto" Height="Auto">
-            <Image Name="TaustaKuva" Stretch="UniformToFill" Source="Assets/IMG_0457.JPG"/>
-            <RelativePanel Name="CategoryTitlePanel" Style="{StaticResource CategoryPanelStyle}" Width="156" Margin="0,145,-156,-145" HorizontalAlignment="Left">
+            <Image Name="TaustaKuva" Stretch="UniformToFill" Source="Assets/Bgs/featuredBG.JPG"/>
+            <!--<RelativePanel Name="CategoryTitlePanel" Style="{StaticResource CategoryPanelStyle}" Width="156" Margin="0,145,-156,-145" HorizontalAlignment="Left">
                 <TextBlock Style="{StaticResource CategoryTitleStyle}" x:Name="categoryTitle" Text="Category" FontSize="30" FontWeight="Bold"  Height="40" Margin="10,0,-11.667,0"/>
-            </RelativePanel>
-            <StackPanel Margin="10,10,10,10">
+            </RelativePanel>-->
+            <StackPanel Margin="5,5,5,10">
 
                 <!-- Header. Logo, slogan-->
                 <RelativePanel Name="Header" Height="100" Style="{StaticResource HeaderStyle}" >
-                    <Image Name="MainLogo" Source="Assets/logoGOULU.png" Tapped="logo_Tapped" Margin="10,0,31,10"/>
-                    <RelativePanel Style="{StaticResource SloganPanelStyle}">
-                        <TextBlock Name="Slogan" Text="" Height="30"  Style="{StaticResource SloganTextStyle}" VerticalAlignment="Bottom" Margin="189,0,-189.667,-54"/>
-                    </RelativePanel>
+                    <Image Name="MainLogo" Source="Assets/gouluHeader2.png" Tapped="logo_Tapped" Margin="0,0,-270.333,0"/>
+
                 </RelativePanel>
 
 
 
                 <!-- Category menu -->
-                <StackPanel Height="30">
-                    <ScrollViewer Name="CategoryMenu" Style="{StaticResource CategoryMenuStyle}"  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled" Height="30">
-                        <Grid Height="30">
+                <StackPanel Height="40">
+                    <ScrollViewer Name="CategoryMenu" Style="{StaticResource CategoryMenuStyle}"  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled" Height="40">
+                        <Grid Height="40">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="40"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="110"/>
@@ -60,9 +58,9 @@
                         </Grid>
                     </ScrollViewer>
                 </StackPanel>
-                <StackPanel Height="380" x:Name="ContentPanel">
+                <StackPanel Height="493" x:Name="ContentPanel">
 
-                    <Frame x:Name="ContentFrame" Margin="9,45,8,0" Padding="10,10,10,10" Width="323" Height="352"/>
+                    <Frame x:Name="ContentFrame" Margin="14,0,13,0" Padding="10,10,10,10" Width="323" Height="494"/>
                 </StackPanel>
 
             </StackPanel>
