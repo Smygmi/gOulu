@@ -1,48 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
-
-  <Identity
-    Name="444493be-071c-4828-aa9e-a4c881c18a16"
-    Publisher="CN=juhoa_000"
-    Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="444493be-071c-4828-aa9e-a4c881c18a16" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="444493be-071c-4828-aa9e-a4c881c18a16" Publisher="CN=juhoa_000" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="444493be-071c-4828-aa9e-a4c881c18a16" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>gOulu</DisplayName>
     <PublisherDisplayName>juhoa_000</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets/IkoniGOulu.png</Logo>
   </Properties>
-
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="gOulu.App">
-      <uap:VisualElements
-        DisplayName="gOulu"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="gOulu"
-        BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="gOulu.App">
+      <uap:VisualElements DisplayName="GOulu" Square150x150Logo="Assets/IkoniGOulu.png" Square44x44Logo="Assets/IkoniGOulu.png" Description="GOulu" BackgroundColor="transparent">
+        <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets/IkoniGOulu.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets/IkoniGOulu.png" Square71x71Logo="Assets/IkoniGOulu.png" Square310x310Logo="Assets/IkoniGOulu.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\GOULUheader.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>

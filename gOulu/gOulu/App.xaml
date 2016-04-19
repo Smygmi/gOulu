@@ -20,7 +20,8 @@
 
         </Style>
         <Style TargetType="Button" x:Key="CategoryButtonStyle">
-            <Setter Property="FontSize" Value ="12"/>
+            <Setter Property="FontSize" Value ="18"/>
+            <Setter Property="Margin" Value="0,0,0,-5"/>
             <Setter Property="FontFamily" Value ="Assets/Fonts/AvenirNextLTPro-Cn.otf#Avenir Next LT Pro"/> 
             <Setter Property="Foreground" Value ="Black"/> 
         </Style>

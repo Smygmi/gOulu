@@ -21,6 +21,7 @@ using Windows.System;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
+using Windows.UI.Xaml.Shapes;
 
 namespace gOulu
 {
@@ -41,6 +42,7 @@ namespace gOulu
         public string pictureURL;
         public string entryAdded;
         public int adType;
+        public string category;
 
         public TextBlock GridEventName = new TextBlock();
         public TextBlock GridEventDateTime = new TextBlock();
@@ -266,7 +268,7 @@ namespace gOulu
                     if (filteredList[i] == "EndOfObject")
                     {
                     eventObjects[index] = new Event()
-                        {
+                    {
                         name = filteredList[i - 14],
                         location = filteredList[i - 13],
                         streetAddress = filteredList[i - 12],
@@ -280,9 +282,11 @@ namespace gOulu
                         websiteURL = filteredList[i - 4],
                         pictureURL = filteredList[i - 3],
                         entryAdded = filteredList[i - 2],
-                        adType = int.Parse(filteredList[i - 1])
+                        adType = int.Parse(filteredList[i - 1]),
+                        category = category
                         };
                     double.TryParse(filteredList[i - 7], out eventObjects[index].price);
+                   
                     GenerateGridEntry(index);
                     index++;
                     }
@@ -350,6 +354,30 @@ namespace gOulu
 
 
             /////
+
+            Ellipse ellipse = new Ellipse();
+            ellipse.Fill = red;
+            ellipse.Width = 60;
+            ellipse.Height = 60;
+
+            Image ikoni = new Image();
+            string url = "/Assets/messut_ikoni.png";
+
+            try
+            {
+                ikoni.Source = new BitmapImage(new Uri(this.BaseUri, url));
+                ikoni.Width = 50;
+                ikoni.Height = 50;
+            }
+            finally
+            {
+
+            }
+            RelativePanel iconPanel = new RelativePanel();
+            iconPanel.Children.Add(ellipse);
+            iconPanel.Children.Add(ikoni);
+            iconPanel.Margin = new Thickness(-20, -30, 0, 0);
+            EventOuterPanels[index].Children.Add(iconPanel);
 
             //Text elements
             GridTexts[0] = eventObjects[index].GridEventName;

@@ -19,9 +19,9 @@
 
                 <!-- Header. Logo, slogan-->
                 <RelativePanel Name="Header" Height="100" Style="{StaticResource HeaderStyle}" >
-                    <Image Name="MainLogo" Source="Assets/logoplaceholder.png" Tapped="logo_Tapped" Margin="10,0,31,10"/>
+                    <Image Name="MainLogo" Source="Assets/logoGOULU.png" Tapped="logo_Tapped" Margin="10,0,31,10"/>
                     <RelativePanel Style="{StaticResource SloganPanelStyle}">
-                        <TextBlock Name="Slogan" Text="Events dat truly matter" Height="30"  Style="{StaticResource SloganTextStyle}" VerticalAlignment="Bottom" Margin="189,0,-189.667,-54"/>
+                        <TextBlock Name="Slogan" Text="Events that truly matter" Height="30"  Style="{StaticResource SloganTextStyle}" VerticalAlignment="Bottom" Margin="189,0,-189.667,-54"/>
                     </RelativePanel>
                 </RelativePanel>
 
@@ -62,7 +62,7 @@
                 </StackPanel>
                 <StackPanel Height="380" x:Name="ContentPanel">
 
-                    <Frame x:Name="ContentFrame" Margin="9,45,8,0" Width="323" Height="352"/>
+                    <Frame x:Name="ContentFrame" Margin="9,45,8,0" Padding="10,10,10,10" Width="323" Height="352"/>
                 </StackPanel>
 
             </StackPanel>

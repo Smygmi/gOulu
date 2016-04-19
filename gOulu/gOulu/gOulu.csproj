@@ -114,8 +114,24 @@
     <None Include="gOulu_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\GOULUheader.png" />
+    <Content Include="Assets\harrastukset_ikoni.png" />
+    <Content Include="Assets\hengelliset_ikoni.png" />
+    <Content Include="Assets\IkoniGOuluSplash.png" />
+    <Content Include="Assets\IkoniGOulu.png" />
+    <Content Include="Assets\IkoniGOulu.scale-400.png" />
+    <Content Include="Assets\IkoniGOuluSplash.scale-200.png" />
     <Content Include="Assets\IMG_0457.JPG" />
+    <Content Include="Assets\koulutus_ikoni.png" />
+    <Content Include="Assets\logoGOULU.png" />
     <Content Include="Assets\logoplaceholder.png" />
+    <Content Include="Assets\messut_ikoni.png" />
+    <Content Include="Assets\musiikki_ikoni.png" />
+    <Content Include="Assets\muut_ikoni.png" />
+    <Content Include="Assets\politiikka_ikoni.png" />
+    <Content Include="Assets\teatteri_ikoni.png" />
+    <Content Include="Assets\urheilu_ikoni.png" />
+    <Content Include="Assets\yoelama_ikoni.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
