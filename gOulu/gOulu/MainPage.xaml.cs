@@ -28,7 +28,7 @@ namespace gOulu
             content = this.ContentPanel;
             ContentFrame.Navigate(typeof(ContentPage), "featured");
             //categoryTitle.Text = "Featured";
-            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/musicBG.png"));
+            TaustaKuva.Source = new BitmapImage(new Uri(this.BaseUri, "/Assets/Bgs/othersBG.png"));
         }
 
         private void button_categoryMusic_Click(object sender, RoutedEventArgs e)
