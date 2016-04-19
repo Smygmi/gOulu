@@ -683,7 +683,7 @@ namespace gOulu
                 Rows[rowIndex].Height = new GridLength(170);
                 EventGrid.Height = EventGrid.Height + 200;
 
-                EventInnerPanels[index].Padding = new Thickness(0, 30, 0, 0);
+                EventInnerPanels[index].Padding = new Thickness(10, 30, 10, 0);
 
             }
 
@@ -738,15 +738,8 @@ namespace gOulu
 
 
             MainPage.content.Height = 900;
-            //EventGrid.Height = 2000;
             eventScroller.Height = EventGrid.Height + 200;
-            
-            Debug.WriteLine("mainpage content height " + MainPage.content.Height);
-            Debug.WriteLine("eventgrid height " + EventGrid.Height);
-            Debug.WriteLine("scroller height " + eventScroller.Height);
-            
-            
-            
+
             
             if(eventObjects[index].category == "empty")
             {
