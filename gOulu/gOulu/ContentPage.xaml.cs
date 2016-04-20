@@ -126,6 +126,7 @@ namespace gOulu
         //blaa 
 
         Style eventbg = (Style)Application.Current.Resources["EventBgStyle"];
+        Style eventbguniform = (Style)Application.Current.Resources["EventBgUniformStyle"];
 
         Style eventstyle = (Style)Application.Current.Resources["EventBaseTextStyle"];
         Style event0style = (Style)Application.Current.Resources["Event0TextStyle"];
@@ -389,7 +390,7 @@ namespace gOulu
                         postalCode = "90830",
                         city = "Haukipudas",
                         startDateTime = "20.4.2016 18:00",
-                        endDateTime = "20.4.2016",
+                        endDateTime = "20.4.2016 18:00",
 
                         notes = "Yhteislaulua Esko Holapan säestyksellä. Kahvia ja arpoja myytävänä. järj. Haukiputaan eläkeläisyhdistysten ja rintamaveteraanien virkistystoimikunta",
                         ageLimit = "0",
@@ -417,7 +418,7 @@ namespace gOulu
                 notes = "Yhteisjuoksuja ja Juoksukouluja ympäri Suomen järjestävä Juoksuliike nyt myös Oulusa!",
                 ageLimit = "0",
                 websiteURL = "http://www.google.com",
-                pictureURL = "http://www.google.com",
+                pictureURL = "/Assets/eventBGexample.jpg",
                 entryAdded = "20.4.2016",
                 adType = 1,
                 category = "urheilu"
@@ -445,30 +446,10 @@ namespace gOulu
                 adType = 0,
                 category = "teatteri"
             };
+            double.TryParse("8 / 10", out eventObjects[index].price);
             GenerateGridEntry(index);
             index++;
-            eventObjects[index] = new Event()
-            {
-                name = "Gorilla Gorilla",
-                location = "",
-                streetAddress = "Kaarlenväylä 2",
-                postalCode = "90100",
-                city = "Oulu",
-                startDateTime = "20.4.2016 10:00, 18:00",
-                endDateTime = "28.4.2016",
-
-                notes = "Viidakon valtaamassa ostoskeskuksessa asuu lauma poliisiksi pukeutuneita gorilloja. Ne ovat pehmeitä, virkaintoisia ja ilahtuvat kovasti törmätessään uuteen asiaan. Banaanien lisäksi niitä kiinnostavat esimerkiksi autot, nenänkaivuu, rannalla löhöily, ihmiset, evoluutio ja liikennesäännöt. Gorillapoliisit ovat käsistään käteviä ja äärimmäisen älykkäitä. Samaan aikaan kun joku niistä kiipeää puuhun, saattaa toinen keksiä vaikkapa avaruusraketin. Ja vaikka joskus käy hassusti, tulee kolari tai ydinjäte ei katoakaan maton alle, niin onneksi asiat unohtuvat nopeasti, heti seuraavan kivan jutun myötä!",
-                ageLimit = "0",
-                websiteURL = "http://www.google.com",
-                pictureURL = "http://www.google.com",
-                entryAdded = "20.4.2016",
-                adType = 0,
-                category = "teatteri"
-            };
-            double.TryParse("10", out eventObjects[index].price);
-
-            GenerateGridEntry(index);
-            index++;
+            CreateEmpty(index);
 
         }
 
@@ -481,7 +462,7 @@ namespace gOulu
             eventObjects[index].GridEventName.Text = eventObjects[index].name;
 
             //If end datetime is same as start print only starting time
-            if (eventObjects[index].startDateTime == eventObjects[index].endDateTime) eventObjects[index].GridEventDateTime.Text = eventObjects[index].startDateTime;
+            if (eventObjects[index].startDateTime == eventObjects[index].endDateTime || eventObjects[index].endDateTime == " ") eventObjects[index].GridEventDateTime.Text = eventObjects[index].startDateTime;
             else eventObjects[index].GridEventDateTime.Text = eventObjects[index].startDateTime + " - " + eventObjects[index].endDateTime;
 
             //Print event location
@@ -492,7 +473,7 @@ namespace gOulu
             else eventObjects[index].GridEventPrice.Text = "Vapaa pääsy";
 
             //If no age limit, don't print
-            if (eventObjects[index].ageLimit != "") eventObjects[index].GridEventAgeLimit.Text = "K" + eventObjects[index].ageLimit.ToString();
+            if (eventObjects[index].ageLimit != " " && eventObjects[index].ageLimit != "0") eventObjects[index].GridEventAgeLimit.Text = "K" + eventObjects[index].ageLimit.ToString();
             else eventObjects[index].GridEventAgeLimit.Text = "";
 
 
@@ -509,12 +490,21 @@ namespace gOulu
 
             //Background picture
            Image bg = new Image();
+            bg.Style = eventbguniform;
+            string bgurl;
+            bgurl = eventObjects[index].pictureURL;
             if (eventObjects[index].pictureURL != "Default")
             {
-                bg.Source = new BitmapImage(new Uri(eventObjects[index].pictureURL, UriKind.Absolute));
+                try {      
+                    bg.Source = new BitmapImage(new Uri(this.BaseUri, bgurl));
+                }
+                finally
+                {
+                
+                }
             }
+            bg.Margin = new Thickness(0, 0, 8, 0);
 
-            
             /////
 
             //Outer panel
@@ -630,17 +620,22 @@ namespace gOulu
                 {
                     GridTexts[i].SetValue(TextBlock.FontWeightProperty, FontWeights.Bold);
                     GridTexts[0].Style = event0style;
+                    
                 }
                 if (eventObjects[index].adType == 1)
                 {
                     GridTexts[0].Style = event1style;
                     GridTexts[1].Style = event0style;
+                    GridTexts[2].Style = event0style;
+
                 }
                 else if (eventObjects[index].adType == 2)
                 {
                     GridTexts[0].Style = event2style;
                     GridTexts[1].Style = event1style;
                     GridTexts[2].Style = event1style;
+                    GridTexts[3].Style = event0style;
+                    GridTexts[4].Style = event0style;
                 }
 
                 EventInnerPanels[index].Children.Add(GridTexts[i]);
@@ -703,6 +698,7 @@ namespace gOulu
                 EventGrid.Height = EventGrid.Height + 170;
 
                 EventInnerPanels[index].Padding = new Thickness(10, 40, 10, 0);
+                
             }
             
             //Setting properties for 2x2 ad size

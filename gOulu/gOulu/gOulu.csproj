@@ -102,6 +102,7 @@
     <Content Include="Assets\Bgs\spiritualBG.png" />
     <Content Include="Assets\Bgs\sportsBG.png" />
     <Content Include="Assets\Bgs\theaterBG.png" />
+    <Content Include="Assets\eventBGexample.jpg" />
     <Content Include="Assets\Fonts\AvenirNextLTPro-Cn.otf" />
     <None Include="project.json" />
   </ItemGroup>
@@ -127,6 +128,7 @@
     <Content Include="Assets\GOULUheader.png" />
     <Content Include="Assets\gouluHeader2.png" />
     <Content Include="Assets\gouluSplash.png" />
+    <Content Include="Assets\gouluSplash.scale-100.png" />
     <Content Include="Assets\Icons\harrastajat_ikoni.png" />
     <Content Include="Assets\Icons\hengelliset_ikoni.png" />
     <Content Include="Assets\IkoniGOuluSplash.png" />

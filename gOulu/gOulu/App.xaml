@@ -103,7 +103,7 @@
         </Style>
         
         <Style TargetType="Image" x:Key="EventBgStyle">
-            <Setter Property="Opacity" Value ="0.6"/>
+            <Setter Property="Opacity" Value ="0.65"/>
             <Setter Property="Stretch" Value ="Fill"/>
         </Style>
 
